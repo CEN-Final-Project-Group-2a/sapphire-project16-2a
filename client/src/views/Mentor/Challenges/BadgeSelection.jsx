@@ -80,7 +80,7 @@ function BadgeSelection ({onBadgeSelect})
     //Function to select current badge, and pass to parent component, to use
     const selectBadge = () => {
         console.log("Button pressed");
-        //Christina doesn't want entire image, wants just the badge ID
+        //Challenge creation form doesn't want entire image, wants just the badge ID
         //const selectedBadge = badgeImages[currentBadgeID];
         onBadgeSelect(currentBadgeID);
     }
