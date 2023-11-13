@@ -2,6 +2,8 @@ import React from "react";
 import NavBar from "../../../components/NavBar/NavBar";
 import './ChallengeView.less';
 
+//container to display challenge drafts
+//will populate from data base, currently dummy values to test frontend functionality
 const getDrafts = [{
   id: 1,
   badge:'Badge-Image', //should be default if not yet selected in draft
@@ -106,7 +108,8 @@ const getDrafts = [{
 }
 ];
 
-
+//container to display assigned challenge
+//will populate from data base, currently dummy values to test frontend functionality
 const getAssigned = [{
   id: 1,
   badge:'Badge-Image',
@@ -135,14 +138,14 @@ function handleChangeView(id) {
 
 }
 function handleChangeNew(){
-  //handle navigation to create new challenge
+  //handle navigation to create new challenge -> when merged
   alert("You clicked on the create new challenge button");
 }
 //container for teacher profile, no functionality currently - placeholder div
 export default function ChallengeView(props) {
  
-
   const drafts = getDrafts.map(element=>{
+    //displays each draft in table
     return (
       <tr key={element.id} >
         <td style={{textAlign:'left'}} >{element.badge}</td>
@@ -152,6 +155,7 @@ export default function ChallengeView(props) {
     )
   })
   const assigned = getAssigned.map(element=>{
+    //displays each assigned in table
     return (
       <tr key={element.id} >
         <td style={{textAlign:'left'}} >{element.badge}</td>
