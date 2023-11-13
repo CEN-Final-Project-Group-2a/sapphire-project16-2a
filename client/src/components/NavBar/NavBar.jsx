@@ -83,13 +83,13 @@ export default function NavBar() {
       ) : null}
       {shouldShowRoute('ChallengeView') ? (
         <Menu.Item key='6' onClick={() => handleRouteChange(routes.ChallengeView)}>
-          <i className='fa fa-star' />
+          <i className='fa fa-star' />{" "}
           &nbsp; Challenges
         </Menu.Item>
       ) : null}
       {shouldShowRoute('TeacherProfile') ? (
         <Menu.Item key='7' onClick={() => handleRouteChange(routes.TeacherProfile)}>
-          <i className='fa fa-user-alt' />
+          <i className='fa fa-user-alt' />{" "}
           &nbsp; Profile
         </Menu.Item>
       ) : null}
