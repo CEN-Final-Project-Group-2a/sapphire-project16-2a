@@ -13,12 +13,12 @@ import {
   getChallengeDetails,
   getMentor,
 } from "../../../Utils/requests"
-import BadgeSelection from '../../../views/Mentor/Challenges/BadgeSelection.jsx'
+import BadgeSelection from './BadgeSelection/BadgeSelection.jsx'
 
 export default function ChallengeCreation() {
   const defaultChallengeData = {
     name: '',
-    badge_id: 'id_0',
+    badge_id: 'Badge0',
     description: '',
   };
 
@@ -26,7 +26,7 @@ export default function ChallengeCreation() {
   const [challengeId, setChallengeId] = useState(null);
   const [mentorId, setMentorId] = useState(null);
   const navigate = useNavigate();
-  const [selectedBadge, setSelectedBadge] = useState(null);
+  const [selectedBadge, setSelectedBadge] = useState(0);
 
   // Ensures that non-mentors are navigated away from this page
   useEffect(() => {
@@ -39,6 +39,11 @@ export default function ChallengeCreation() {
       }
     })
   }, []);
+
+  // Detect when the user has chosen a new badge with the selection widget
+  useEffect(() => {
+    setChallengeData({...challengeData, badge_id: "Badge" + selectedBadge})
+  }, [selectedBadge]);
 
   // Returns the activity object associated with an challenge if one is found to already exist.
   // Creates a new activity and associates it with a challenge if necessary.
@@ -156,16 +161,21 @@ export default function ChallengeCreation() {
           </Form.Item>
 
           <Form.Item
+          id='form-label'
+          wrapperCol={{
+              span: 30,
+            }}
+          style={{ marginBottom: '11%' }}>
+            <BadgeSelection onBadgeSelect={setSelectedBadge} />
+          </Form.Item>
+
+          <Form.Item
             id="form-label"
             wrapperCol={{
               span: 30,
             }}
           >
             <button onClick={handleViewActivityTemplate}>Edit Challenge Activity</button>
-          </Form.Item>
-
-          <Form.Item id='form-label' style={{ marginBottom: '20px' }}>
-            <BadgeSelection onBadgeSelect={setSelectedBadge} />
           </Form.Item>
           
           <Form.Item

@@ -1,7 +1,7 @@
 //Import stuff
 import React, { useEffect, useRef, useState, useReducer } from 'react';
-import Badge1 from "../../../Images/Badge1.jpg";
-import Badge2 from "../../../Images/Badge2.jpg";
+import Badge0 from "../../../../Images/Badge0.jpg";
+import Badge1 from "../../../../Images/Badge1.jpg";
 //https://pusher.com/blog/getting-started-with-react-router-v4/#application-structure
 //https://stackoverflow.com/questions/49728705/adding-new-page-to-reactjs-template
 
@@ -16,7 +16,7 @@ function BadgeSelection ({onBadgeSelect})
     const [currentBadgeID, setBadgeID] = useState(0);
     //const [selectedBadgeID, setSelectedBadgeID] = useState(0);
     //Array of badge images - will add more later as I draw them
-    const badgeImages = [Badge1, Badge2];
+    const badgeImages = [Badge0, Badge1];
 
     //Style for the badge carousel
     const sliderStyles = {
@@ -79,7 +79,6 @@ function BadgeSelection ({onBadgeSelect})
 
     //Function to select current badge, and pass to parent component, to use
     const selectBadge = () => {
-        console.log("Button pressed");
         //Challenge creation form doesn't want entire image, wants just the badge ID
         //const selectedBadge = badgeImages[currentBadgeID];
         onBadgeSelect(currentBadgeID);
