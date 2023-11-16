@@ -19,6 +19,7 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
+import StudentProfile from './views/StudentProfile/StudentProfile'
 
 // FIXME(ccastillo): remove there being a separate page for badge display, and put it onto the student profile
 import BadgeDisplayList from './views/Student/BadgeDisplayList/BadgeDisplayList'
@@ -113,6 +114,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <ContentCreator />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/StudentProfile'
+          element={
+            <PrivateRoute>
+              <StudentProfile />
             </PrivateRoute>
           }
         />
