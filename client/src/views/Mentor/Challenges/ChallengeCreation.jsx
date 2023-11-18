@@ -106,6 +106,7 @@ export default function ChallengeCreation() {
       } else {
         const savedChallengeId = response.data.id;
         setChallengeId(savedChallengeId);
+        message.success("Successfully saved challenge information!")
         return savedChallengeId;
       }
     }
@@ -159,7 +160,7 @@ export default function ChallengeCreation() {
               span: 30,
             }}
           >
-            <button onClick={handleViewActivityTemplate}>Edit Challenge Activity</button>
+            <button onClick={handleViewActivityTemplate}>Save and Edit Challenge Activity</button>
           </Form.Item>
           <Form.Item
             id="form-label"
@@ -175,9 +176,22 @@ export default function ChallengeCreation() {
     </div>
   );
 
+  // TODO(ccastillo): Have this button navigate to the challenge view page
+  const handleBack = () => {
+    message.error("Sorry, this feature is not yet available.")
+    // navigate()
+  }
+
   return (
     <div className='container nav-padding'>
       <NavBar />
+      <button
+        onClick={handleBack}
+        id='link'
+        className='flex flex-column'
+      >
+        <i id='icon-btn' className='fa fa-arrow-left' />
+      </button>
       <div id='main-header'>Edit challenge details</div>
       {challengeCreationContainerForm}
     </div>
