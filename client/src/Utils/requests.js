@@ -397,6 +397,18 @@ export const updateChallengeActivity = async (id, activity_id) =>
     error: 'Failed to update the challenge activity',
 });
 
+// Update the list of students associated with a challenge. This denotes the students who have successfully completed the challenge.
+export const updateStudentsCompletedChallenge = async (id, student_ids) =>
+  makeRequest({
+    method: PUT,
+    path: `${server}/challenges/${id}`,
+    data: {
+      students: student_ids,
+    },
+    auth: true,
+    error: 'Failed to update the students associated with the challenge',
+});
+
 export const deleteActivity = async (id) =>
   makeRequest({
     method: DELETE,
