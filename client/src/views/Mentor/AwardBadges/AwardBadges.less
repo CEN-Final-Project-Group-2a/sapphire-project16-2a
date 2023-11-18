@@ -1,0 +1,57 @@
+@import '../../../assets/style.less';
+
+// Table View
+#table-container {
+  width: 80%;
+  padding-top: 5vh;
+  margin: 2vh auto 0 auto;
+}
+
+.ant-table {
+  border-radius: 4px;
+  border: solid 2px;
+  border-color: #colors[secondary];
+}
+
+.ant-table-row {
+  background-color: #colors[tertiary];
+}
+
+// Miscellaneous
+#challenge-details-container {
+  display: grid;
+  place-items: center;
+  position: relative;
+  bottom: 0;
+  margin-bottom: 1vh;
+  margin-top: 6vh;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 20px 20px 0 20px;
+  
+  p {
+    color: #colors[text-secondary]; 
+  }
+}
+
+#button-style {
+  button {
+    width: 50%;
+    height: auto;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 30px;
+    margin: 10% auto auto auto;
+    background: #colors[quaternary];
+    border: none;
+    color: #colors[text-primary];
+    transition: 0.25s;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
+
+    &:hover {
+      width: 55%;
+      background: #colors[quinary];
+    }
+  }
+}
