@@ -18,6 +18,14 @@
     },
     {
       "method": "GET",
+      "path": "/students/challenges/:id",
+      "handler": "student.challenges",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/students/count",
       "handler": "student.count",
       "config": {

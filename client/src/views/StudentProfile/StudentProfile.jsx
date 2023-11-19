@@ -1,36 +1,50 @@
-import { message, Spin, Row, Col, Alert, Menu, Dropdown } from 'antd';
+import { message, Row, Col } from 'antd';
 import React, {useEffect, useState} from 'react';
-import{useNavigate} from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-import {getStudentClassroom} from '../../Utils/requests';
-import { getStudent } from '../../Utils/requests';
+import { getStudentClassroom, getCurrentStudent, getStudentCompletedChallenges } from '../../Utils/requests';
 import './StudentProfile.less';
 import {Link} from 'react-router-dom';
 import BadgeDisplayList from './BadgeDisplayList/BadgeDisplayList'
 
 function StudentProfile(){
+  const studentName = localStorage.getItem('studentName');
+  const [completedChallengeList, setCompletedChallengeList] = useState([]);
+  const [classroom, setClassroom] = useState(null);
 
-    const navigate = useNavigate();
-    const studentName = localStorage.getItem('studentName');
-    const [classroom, setClassroom] = useState(null);
+  useEffect(() => {
+    getCurrentStudent().then((res) => {
+      if (res.data) {
+        // Note: There could be multiple students logged in, so for now the code just gets one of them.
+        // In future, it could be helpful to have a menu to select which student's profile the logged-in students want to view.
+        const studentId = res.data.students[0].id;
+        getStudentCompletedChallenges(studentId).then((res) => {
+          if (res.data) {
+            setCompletedChallengeList(res.data);
+          } else {
+            message.error(res.err)
+          }
+        })
+      } else {
+        message.error(res.err);
+      }
+    })
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const res = await getStudentClassroom();
-            setClassroom(res.data.classroom.name);
-            console.log(res.data.classroom.name);
-            if (res.data) {
-              if (res.data.name) {
-                setLessonModule(res.data.lesson_module);
-              }
-            } else {
-              message.error(res.err);
-            }
-          } catch {}
-        };
-        fetchData();
-      }, []);
+    const fetchData = async () => {
+      try {
+        const res = await getStudentClassroom();
+        setClassroom(res.data.classroom.name);
+        if (res.data) {
+          if (res.data.name) {
+            setLessonModule(res.data.lesson_module);
+          }
+        } else {
+          message.error(res.err);
+        }
+      } catch {}
+    };
+    fetchData();
+  }, []);
+
 
   return(
     <html>
@@ -44,7 +58,7 @@ function StudentProfile(){
               </Col>
               <Col span={12}>
                 <div id="badgeDisplayWidget">
-                  <BadgeDisplayList/>
+                  <BadgeDisplayList completedChallengeList={completedChallengeList}/>
                 </div>
               </Col>
             </Row>

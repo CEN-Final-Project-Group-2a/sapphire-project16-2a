@@ -1,4 +1,3 @@
-import UF from "../../../../assets/uf_logo.png"
 import Badge1 from "../../../../Images/Badge1.jpg"
 import Badge2 from "../../../../Images/Badge2.jpg"
 import "./BadgeDisplayItem.less"
@@ -8,7 +7,7 @@ function BadgeDisplayItem({name, badge_id}) {
 
     return (
         <div id="logos">
-            <img src={badge_address} alt={badge_id}></img>
+            <img src={badge_address} alt="Badge Icon"></img>
             <p>{name}</p>
         </div>
     )
