@@ -3,13 +3,13 @@ import Badge1 from "../../../../Images/Badge1.jpg"
 import Badge2 from "../../../../Images/Badge2.jpg"
 import "./BadgeDisplayItem.less"
 
-function BadgeDisplayItem({title, badge_id}) {
+function BadgeDisplayItem({name, badge_id}) {
     const badge_address = badgeIdToAddress(badge_id);
 
     return (
         <div id="logos">
             <img src={badge_address} alt={badge_id}></img>
-            <p>{title}</p>
+            <p>{name}</p>
         </div>
     )
 }

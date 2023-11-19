@@ -21,14 +21,10 @@ import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import StudentProfile from './views/StudentProfile/StudentProfile'
 
-// FIXME(ccastillo): remove there being a separate page for badge display, and put it onto the student profile
-import BadgeDisplayList from './views/Student/BadgeDisplayList/BadgeDisplayList'
-
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path='/badges' element={<BadgeDisplayList />} />
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/teacherlogin' element={<TeacherLogin />} />
