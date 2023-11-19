@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/schools": {
+    "/challenges": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/School"
+                    "$ref": "#/components/schemas/Challenge"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "School"
+          "Challenge"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/School"
+                  "$ref": "#/components/schemas/Challenge"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "School"
+          "Challenge"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSchool"
+                "$ref": "#/components/schemas/NewChallenge"
               }
             }
           }
         }
       }
     },
-    "/schools/count": {
+    "/challenges/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "School"
+          "Challenge"
         ],
         "parameters": []
       }
     },
-    "/schools/{id}": {
+    "/challenges/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/School"
+                  "$ref": "#/components/schemas/Challenge"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "School"
+          "Challenge"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/School"
+                  "$ref": "#/components/schemas/Challenge"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "School"
+          "Challenge"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSchool"
+                "$ref": "#/components/schemas/NewChallenge"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "School"
+          "Challenge"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "School": {
+      "Challenge": {
         "required": [
           "id"
         ],
@@ -522,14 +522,45 @@
           "id": {
             "type": "string"
           },
-          "name": {
-            "type": "string"
-          },
-          "county": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
+          "mentor": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "first_name": {
+                "type": "string"
+              },
+              "last_name": {
+                "type": "string"
+              },
+              "school": {
+                "type": "string"
+              },
+              "classrooms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "user": {
+                "type": "string"
+              },
+              "challenges": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
           "classrooms": {
             "type": "array",
@@ -596,60 +627,78 @@
               }
             }
           },
-          "mentors": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "first_name": {
-                  "type": "string"
-                },
-                "last_name": {
-                  "type": "string"
-                },
-                "school": {
-                  "type": "string"
-                },
-                "classrooms": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "user": {
-                  "type": "string"
-                },
-                "challenges": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
+          "activity": {
+            "required": [
+              "id",
+              "number",
+              "template"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "lesson_module": {
+                "type": "string"
+              },
+              "number": {
+                "type": "integer"
+              },
+              "template": {
+                "type": "string"
+              },
+              "blocks": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
+              },
+              "description": {
+                "type": "string"
+              },
+              "StandardS": {
+                "type": "string"
+              },
+              "images": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              },
+              "learning_components": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "activity_template": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
-          }
-        }
-      },
-      "NewSchool": {
-        "properties": {
+          },
           "name": {
             "type": "string"
           },
-          "county": {
+          "description": {
             "type": "string"
           },
-          "state": {
+          "badge_id": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "NewChallenge": {
+        "properties": {
+          "mentor": {
             "type": "string"
           },
           "classrooms": {
@@ -658,11 +707,21 @@
               "type": "string"
             }
           },
-          "mentors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "activity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "badge_id": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -676,7 +735,7 @@
   },
   "tags": [
     {
-      "name": "School"
+      "name": "Challenge"
     }
   ]
 }

@@ -6,6 +6,7 @@ import BlocklyPage from './views/BlocklyPage/BlocklyPage';
 import BugReport from './views/BugReport/BugReport';
 import ContentCreator from './views/ContentCreator/ContentCreator';
 import Home from './views/Home/Home';
+import ChallengeCreation from './views/Mentor/Challenges/ChallengeCreation';
 import Classroom from './views/Mentor/Classroom/Classroom';
 import Dashboard from './views/Mentor/Dashboard/Dashboard';
 import NotFound from './views/NotFound';
@@ -110,6 +111,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <ContentCreator />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/challenge-creation'
+          element={
+            <PrivateRoute>
+              <ChallengeCreation />
             </PrivateRoute>
           }
         />
