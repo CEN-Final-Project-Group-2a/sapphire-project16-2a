@@ -2,12 +2,6 @@
 import React, { useEffect, useRef, useState, useReducer } from 'react';
 import Badge1 from "../../../Images/Badge1.jpg";
 import Badge2 from "../../../Images/Badge2.jpg";
-//https://pusher.com/blog/getting-started-with-react-router-v4/#application-structure
-//https://stackoverflow.com/questions/49728705/adding-new-page-to-reactjs-template
-
-//Image carousel video = https://www.youtube.com/watch?v=SK9AlIbexOE
-
-//http://localhost:3000/challenge-creation
 
 //Function component to select/view badges
 function BadgeSelection ({onBadgeSelect})
