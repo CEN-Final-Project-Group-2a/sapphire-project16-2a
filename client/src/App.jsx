@@ -20,6 +20,7 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
+import StudentProfile from './views/StudentProfile/StudentProfile'
 
 const App = () => {
   return (
@@ -113,11 +114,22 @@ const App = () => {
             </PrivateRoute>
           }
         />
+
+          <Route
+              path='/challenge-creation'
+              element={
+                  <PrivateRoute>
+                      <ChallengeCreation />
+                  </PrivateRoute>
+              }
+          />
+
         <Route
-          path='/challenge-creation'
+          path='/StudentProfile'
           element={
             <PrivateRoute>
-              <ChallengeCreation />
+              <StudentProfile />
+
             </PrivateRoute>
           }
         />

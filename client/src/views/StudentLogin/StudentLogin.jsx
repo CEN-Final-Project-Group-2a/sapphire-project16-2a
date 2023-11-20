@@ -20,6 +20,7 @@ export default function StudentLogin() {
   const navigate = useNavigate();
 
   const joinCode = localStorage.getItem('join-code');
+  var admittedStudent;
 
   useEffect(() => {
     getStudents(joinCode).then((res) => {
@@ -51,6 +52,7 @@ export default function StudentLogin() {
         if (ids[i] === studentList[j].id) authList.push(studentList[j]);
       }
     }
+    admittedStudent = authList[0];
     let fails = [...authFail];
     // studentAnimals.forEach((animal) => console.log(animal));
     for (let i = 0; i < authList.length; i++) {
@@ -70,6 +72,9 @@ export default function StudentLogin() {
     const fails = studentAuth(ids);
     if (!fails.includes(true)) {
       const res = await postJoin(joinCode, ids);
+      localStorage.setItem('studentName', admittedStudent.name);
+      navigate('/student');
+
       if (res.data) {
         setUserSession(res.data.jwt, JSON.stringify(res.data.students));
         navigate('/student');
