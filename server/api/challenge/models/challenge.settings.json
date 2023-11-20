@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "challenges",
+  "info": {
+    "name": "Challenge"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "mentor": {
+      "model": "mentor",
+      "via": "challenges"
+    },
+    "classrooms": {
+      "collection": "classroom",
+      "via": "challenge"
+    },
+    "activity": {
+      "model": "activity"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "badge_id": {
+      "type": "string"
+    }
+  }
+}
