@@ -6,12 +6,15 @@ import {getStudentClassroom} from '../../Utils/requests';
 import { getStudent } from '../../Utils/requests';
 import './StudentProfile.less';
 import {Link} from 'react-router-dom';
+import StudentChallengeView from "./StudentChallengeView";
 
 function StudentProfile(){
 
     const navigate = useNavigate();
     const studentName = localStorage.getItem('studentName');
     const [classroom, setClassroom] = useState(null);
+    //To get scrolling list of student challenges
+    const [challenges, setChallenges] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -66,6 +69,10 @@ function StudentProfile(){
         Badge2
         
         </div>
+
+           <div>
+               <StudentChallengeView challenges={challenges} />
+           </div>
 
         
 
