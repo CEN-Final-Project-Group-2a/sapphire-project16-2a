@@ -733,5 +733,5 @@ export const getChallengeDetails = async (id) =>
     method: GET,
     path: `${server}/challenges/${id}`,
     auth: true,
-    error: 'Unable to retrive challenge details',
+    error: 'Unable to retrieve challenge details',
   });

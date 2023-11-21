@@ -8,23 +8,6 @@ export default function ListView(props) {
     form,
   } = props;
 
-  const UneditableCell = ({
-    editing,
-    dataIndex,
-    title,
-    inputType,
-    record,
-    index,
-    children,
-    ...restProps
-  }) => {
-    return (
-      <td {...restProps}>
-        {children}
-      </td>
-    );
-  };
-
   const columns = [
     {
       title: 'Name',
@@ -74,18 +57,12 @@ export default function ListView(props) {
     },
   ];
 
-  // FIXME(ccastillo): Fix bug with table not populating until sort button is pressed
   return (
     <div id='table-container'>
       <Form form={form} component={false}>
         <Table
           columns={columns}
           dataSource={studentData}
-          components={{
-            body: {
-              cell: UneditableCell,
-            },
-          }}
         />
       </Form>
     </div>
