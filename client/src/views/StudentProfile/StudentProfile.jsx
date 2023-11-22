@@ -7,8 +7,8 @@ import {Link} from 'react-router-dom';
 import BadgeDisplayList from './BadgeDisplayList/BadgeDisplayList'
 
 function StudentProfile(){
-  const studentName = localStorage.getItem('studentName');
-  const [completedChallengeList, setCompletedChallengeList] = useState([]);
+  const [studentName, setStudentName] = useState(localStorage.getItem("studentName"));
+  const [completedChallengeList, setCompletedChallengeList] = useState(null);
   const [classroom, setClassroom] = useState(null);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ function StudentProfile(){
       if (res.data) {
         // Note: There could be multiple students logged in, so for now the code just gets one of them.
         // In future, it could be helpful to have a menu to select which student's profile the logged-in students want to view.
+        setStudentName(res.data.students[0].name);
         const studentId = res.data.students[0].id;
         getStudentCompletedChallenges(studentId).then((res) => {
           if (res.data) {
