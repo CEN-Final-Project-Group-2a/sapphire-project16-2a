@@ -71,10 +71,8 @@ function StudentProfile(){
         </div>
 
            <div>
-               <StudentChallengeView challenges={challenges} />
+               <StudentChallengeView classroom={classroom}/>
            </div>
-
-        
 
        </div>
        </div>

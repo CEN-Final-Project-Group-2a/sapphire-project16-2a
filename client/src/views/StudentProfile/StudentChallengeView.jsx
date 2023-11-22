@@ -1,58 +1,38 @@
-//Import stuff
-import React, { useEffect, useRef, useState, useReducer } from 'react';
-//import Challenges from './Challenges'
-//Use getstudentclassroom function in order to get what classroom student is in
-import { getStudentClassroom } from '../../Utils/requests';
+import React, { useEffect, useState } from 'react';
+import { message } from 'antd';
+import {getChallengeDetails} from "../../Utils/requests";
 
 //Tutorial for to-do list, kinda helpful - https://strapi.io/blog/how-to-build-a-to-do-list-application-with-strapi-and-react-js
 //Fetching data from component? - https://stackoverflow.com/questions/67241144/fetch-data-from-strapi-cms-to-nextreact-js-frontend-doesnt-work
 
 
-//Function component for student to view list of challenges. Get prop of array of challenges
-function StudentChallengeView ({challengeList})
-{
+//Component gets the classroom prop from the profile already made
+const StudentChallengeView = ({ classroom }) => {
     const [challenges, setChallenges] = useState([]);
-    const [studentClassroom, setStudentClassroom] = useState(null);
 
-    React.useEffect(() =>
-    {
-        const getChallenges = async() =>
-        {
+    useEffect(() => {
+        const fetchChallenges = async () => {
+            //Checking if the classroom has challenges
+            if (classroom && classroom.challenges && classroom.challenges.length > 0)
+            {
+                //Getting each challenge's details
+                const challengeDetails = await Promise.all(
+                    classroom.challenges.map(async (challenge) =>
+                    {
+                        const response = await getChallengeDetails(challenge.id);
+                        return response.json();
+                    })
+                );
 
-            const response = await fetch('http://localhost:1337/challenges?classroom=${studentClassroom}', {
-            method: 'GET',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            });
-
-            const challengeArray = await response.json();
-
-            setChallenges(challengeArray);
-
-        }
-
-        getChallenges();
-
-    }, [studentClassroom]);
-
-    //Getting the student's classroom using the function
-    useEffect( ()=> {
-        const getClassroom = async() => {
-
-            const response = await getStudentClassroom();
-
-            if (response.data) {
-
-                setStudentClassroom(response.data);
-
+                //Set the challenge details in the state
+                setChallenges(challengeDetails);
             }
         };
 
-        getClassroom();
+        // Fetch challenges
+        fetchChallenges();
+    }, [classroom]);
 
-        }, []);
-    
     //Scrolling list for array of challenges, use map function
     return (
         <div style={{overflow: 'auto', maxHeight: '300px'}}>

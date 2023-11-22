@@ -715,7 +715,7 @@ export const getClassroomWorkspace = async (id) =>
     method: GET,
     path: `${server}/classroom/workspaces/${id}`,
     auth: true,
-    error: 'Unable to retrive classroom workspaces',
+    error: 'Unable to retrieve classroom workspaces',
   });
 
 export const getChallengeDetails = async (id) =>
@@ -723,5 +723,6 @@ export const getChallengeDetails = async (id) =>
     method: GET,
     path: `${server}/challenges/${id}`,
     auth: true,
-    error: 'Unable to retrive challenge details',
+    error: 'Unable to retrieve challenge details',
   });
+
