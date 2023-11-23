@@ -77,19 +77,27 @@ const StudentChallengeView = () => {
 export default StudentChallengeView;*/
 
 //Scrolling list for array of challenges, use map function
+    //If list not showing up, make sure that there are challenges published with the student's classroom in strapi
     return (
-        <div style={{overflow: 'auto', maxHeight: '300px'}}>
-            {challenges && challenges.map((challenge, index) => (
-                <div key={index}>
-                    <p>Challenge Name: {challenge.name}</p>
-                    <p>Challenge Description: {challenge.description}</p>
+        <div>
+            <p style={{ color: 'white', fontSize: '20px', paddingLeft: '35px', fontWeight: 'bold'}}></p>
+            <p style={{ color: 'white', fontSize: '20px', paddingLeft: '35px', fontWeight: 'bold'}}></p>
+            <p style={{ color: 'white', fontSize: '20px', paddingLeft: '35px', fontWeight: 'bold'}}>List of Challenges</p>
+            <div style={{overflow: 'auto', maxHeight: '75px'}}>
 
-                </div>
+                {challenges && challenges.map((challenge, index) => (
+                    <div key={index} style={{ color: 'white', fontSize: '16px' }}>
+                        <p style={{ color: 'white', fontSize: '18px', paddingLeft: '35px'}}>{index + 1}. Name: {challenge.name}</p>
+                        <p style={{ color: 'white', fontSize: '18px', paddingLeft: '53px'}}>Description: {challenge.description}</p>
+                    </div>
 
-            ))
-            }
+                ))
+                }
+
+            </div>
 
         </div>
+
     )
 }
 
