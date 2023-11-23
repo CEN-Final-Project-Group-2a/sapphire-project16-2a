@@ -949,6 +949,12 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+                "challenges": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -1053,6 +1059,13 @@
                 "badge_id": {
                   "type": "string"
                 },
+                "students": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+
                 "published_at": {
                   "type": "string"
                 },

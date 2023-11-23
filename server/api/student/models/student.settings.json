@@ -32,6 +32,10 @@
     },
     "last_logged_in": {
       "type": "datetime"
+    },
+    "challenges": {
+      "via": "students",
+      "collection": "challenge"
     }
   }
 }

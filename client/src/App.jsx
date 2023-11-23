@@ -6,6 +6,7 @@ import BlocklyPage from './views/BlocklyPage/BlocklyPage';
 import BugReport from './views/BugReport/BugReport';
 import ContentCreator from './views/ContentCreator/ContentCreator';
 import Home from './views/Home/Home';
+import AwardBadges from './views/Mentor/AwardBadges/AwardBadges';
 import ChallengeCreation from './views/Mentor/Challenges/ChallengeCreation';
 import Classroom from './views/Mentor/Classroom/Classroom';
 import Dashboard from './views/Mentor/Dashboard/Dashboard';
@@ -114,6 +115,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
+
           <Route
               path='/StudentProfile'
               element={
@@ -131,6 +133,33 @@ const App = () => {
               </PrivateRoute>} />
 
           <Route path='/bugreport' element={<BugReport />} />
+
+        <Route
+          path='/challenge-creation'
+          element={
+            <PrivateRoute>
+              <ChallengeCreation />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/StudentProfile'
+          element={
+            <PrivateRoute>
+              <StudentProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/awardbadges'
+          element={
+            <PrivateRoute>
+              <AwardBadges />
+            </PrivateRoute>
+          }
+        />
+        <Route path='/bugreport' element={<BugReport />} />
+
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>
