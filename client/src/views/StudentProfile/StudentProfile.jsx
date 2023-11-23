@@ -21,7 +21,7 @@ function StudentProfile(){
           try {
             const res = await getStudentClassroom();
             setClassroom(res.data.classroom.name);
-            console.log(res.data.classroom.name);
+            //console.log(res.data.classroom.name);
             if (res.data) {
               if (res.data.name) {
                 setLessonModule(res.data.lesson_module);
@@ -70,9 +70,7 @@ function StudentProfile(){
         
         </div>
 
-           <div>
-               <StudentChallengeView classroom={classroom}/>
-           </div>
+               <StudentChallengeView/>
 
        </div>
        </div>
