@@ -725,3 +725,6 @@ export const getChallengeDetails = async (id) =>
     auth: true,
     error: 'Unable to retrive challenge details',
   });
+
+  export const getChallenges = async (ids) =>
+    Promise.all(ids.map(async (id) => (await getChallengeDetails(id)).data));
