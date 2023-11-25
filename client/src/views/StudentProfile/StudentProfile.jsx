@@ -14,7 +14,7 @@ function StudentProfile(){
     const studentName = localStorage.getItem('studentName');
     const [classroom, setClassroom] = useState(null);
     //To get scrolling list of student challenges
-    const [challenges, setChallenges] = useState([]);
+    //const [challenges, setChallenges] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -70,7 +70,7 @@ function StudentProfile(){
         
         </div>
 
-               <StudentChallengeView/>
+               <StudentChallengeView studentName={studentName}/>
 
        </div>
        </div>
