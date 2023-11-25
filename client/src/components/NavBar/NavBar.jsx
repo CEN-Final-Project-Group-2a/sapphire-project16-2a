@@ -87,14 +87,26 @@ export default function NavBar() {
           &nbsp; About
         </Menu.Item>
       ) : null}
+      {shouldShowRoute('ChallengeView') ? (
+        <Menu.Item key='7' onClick={() => handleRouteChange(routes.ChallengeView)}>
+          <i className='fa fa-star' />{" "}
+          &nbsp; Challenges
+        </Menu.Item>
+      ) : null}
+      {shouldShowRoute('TeacherProfile') ? (
+        <Menu.Item key='8' onClick={() => handleRouteChange(routes.TeacherProfile)}>
+          <i className='fa fa-user-alt' />{" "}
+          &nbsp; Profile
+        </Menu.Item>
+      ) : null}
       {shouldShowRoute('BugReport') ? (
-        <Menu.Item key='7' onClick={() => handleRouteChange(routes.BugReport)}>
+        <Menu.Item key='9' onClick={() => handleRouteChange(routes.BugReport)}>
           <i className='fa fa-calendar-times' />
           &nbsp; Report a Bug
         </Menu.Item>
       ) : null}
       {shouldShowRoute('SignOut') ? (
-        <Menu.Item key='8' onClick={() => handleLogout()}>
+        <Menu.Item key='10' onClick={() => handleLogout()}>
           <i className='fa fa-sign-out-alt' />
           &nbsp; Sign Out
         </Menu.Item>
