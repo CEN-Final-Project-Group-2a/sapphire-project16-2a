@@ -15,18 +15,26 @@ import {
 } from "../../../Utils/requests"
 import BadgeSelection from './BadgeSelection/BadgeSelection.jsx'
 
-export default function ChallengeCreation() {
-  const defaultChallengeData = {
+
+//adding a props to update a previously saved challenge
+export default function ChallengeCreation({savedChallenge}) {
+  const defaultChallengeData = (savedChallenge == null) ? {
     name: '',
     badge_id: 'Badge0',
     description: '',
-  };
+  } : savedChallenge;
+
+  console.log(savedChallenge);
+  const savedId = (savedChallenge == null) ? null : savedChallenge.id;
+  const savedMentor = (savedChallenge == null) ? null : savedChallenge.mentor.id;
+  const savedBadge = (savedChallenge == null) ? null : savedChallenge.badge_id;
 
   const [challengeData, setChallengeData] = useState(defaultChallengeData);
-  const [challengeId, setChallengeId] = useState(null);
-  const [mentorId, setMentorId] = useState(null);
+  const [challengeId, setChallengeId] = useState(savedId);
+  const [mentorId, setMentorId] = useState(savedMentor);
   const navigate = useNavigate();
-  const [selectedBadge, setSelectedBadge] = useState(0);
+  const [selectedBadge, setSelectedBadge] = useState(savedBadge);
+  var saved = false;
 
   // Ensures that non-mentors are navigated away from this page
   useEffect(() => {
@@ -113,10 +121,23 @@ export default function ChallengeCreation() {
       } else {
         const savedChallengeId = response.data.id;
         setChallengeId(savedChallengeId);
+        message.success("Challenge Details Saved!");
+        saved = true;
         return savedChallengeId;
       }
     }
     return null;
+  }
+
+  const navigateToChallengeView = async () => {
+    if(saved){
+      navigate("/challengeview");
+    }
+    else{
+      message.error("You haven't saved your changes! Are you sure you want to navigate back?");
+      saved = true;
+    }
+    
   }
 
   const navigateToAssignChallenge = async () => {
@@ -195,6 +216,12 @@ export default function ChallengeCreation() {
   return (
     <div className='container nav-padding'>
       <NavBar />
+      <button style={{margin:'3vw'}}
+          onClick={navigateToChallengeView}
+          id='link'
+          className='flex flex-column'>
+            <i id='icon-btn' className='fa fa-arrow-left' />
+      </button>
       <div id='main-header'>Edit challenge details</div>
       {challengeCreationContainerForm}
     </div>

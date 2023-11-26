@@ -10,12 +10,12 @@ import LessonEditor from "../../ContentCreator/LessonEditor/LessonEditor";
 
 
 //container for teacher profile, no functionality currently - placeholder div
-export default function ChallengeView(props) {
+export default function ChallengeView({updateChallenge}) {
   const navigate = useNavigate();
   const [getDrafts, setDrafts] = useState([]);
   const [getAssigned, setAssigned] = useState([]);
-  var drafts = getDrafts;
   var assigned = getAssigned;
+  var drafts = getDrafts;
 
   function match(length){ 
     //if there are classrooms assigned => assigned else drafts
@@ -37,6 +37,7 @@ export default function ChallengeView(props) {
           var assignedData = challenges.filter(challenge => !match(challenge.classrooms.length));
           setDrafts(draftData);
           setAssigned(assignedData);
+          console.log(challenges);
           
         });
       } else {
@@ -46,10 +47,10 @@ export default function ChallengeView(props) {
   }, []);
 
   function handleBadges(id){
-    if(id == 0){
+    if(id == "Badge0" || id == "id_0" || id == 0){
       return Badge0;
     }
-    else if(id == 1){
+    else if(id == "Badge1" || id == "id_1" || id == 1){
       return Badge1;
     }
     else{
@@ -57,19 +58,21 @@ export default function ChallengeView(props) {
     }
   }
 
-  function handleChangeEdit(id) { 
+  function handleChangeEdit(challenge) { 
     //handle change for drafts
     //should direct user to create challenge page with previously filled out fields - editable
     //handle navigation
-    alert("You clicked on the pencil icon");
+    updateChallenge(challenge);
+    
+    navigate('/challenge-creation');
   
   }
-  function handleChangeView(id) { 
+  function handleChangeView(challenge) { 
     //handle change for past assignments
     //should direct user to create challenge page with previously filled out fields - not editable
     //handle navigation
-    alert("You clicked on the view icon");
-  
+    updateChallenge(challenge);
+    navigate("/awardbadges");
   }
   function handleChangeNew(){
     //handle navigation to create new challenge -> when merged
@@ -95,7 +98,7 @@ export default function ChallengeView(props) {
             <tr key={element.id} >
               <td style={{textAlign:'left'}} ><img id='badge' src={handleBadges(element.badge_id)} /></td>
               <td>{element.name}</td>
-              <td style={{textAlign:'right'}} onClick={(e) => {handleChangeEdit(element.id)}} id='icon'><i className='fa fa-pen' /></td>
+              <td style={{textAlign:'right'}} onClick={(e) => {handleChangeEdit(element)}} id='icon'><i className='fa fa-pen' /></td>
             </tr>
           )
         })
@@ -128,7 +131,7 @@ export default function ChallengeView(props) {
             <tr key={element.id} >
               <td style={{textAlign:'left'}} ><img src={handleBadges(element.badge_id)} id='badge'/></td>
               <td>{element.name}</td>
-              <td style={{textAlign:'right'}} onClick={(e) => {handleChangeView(element.id)}} id='icon'><i className='fa fa-eye' /></td>
+              <td style={{textAlign:'right'}} onClick={(e) => {handleChangeView(element)}} id='icon'><i className='fa fa-eye' /></td>
             </tr>
           )
         })

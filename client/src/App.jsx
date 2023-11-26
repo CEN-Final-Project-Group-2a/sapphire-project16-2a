@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
@@ -24,9 +24,11 @@ import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import StudentProfile from './views/StudentProfile/StudentProfile'
 import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
 import ChallengeView from './views/Mentor/Challenges/ChallengeView';
-import StudentList from './views/Mentor/TeacherProfile/StudentList';
 
 const App = () => {
+  const [savedChallenge, setChallenge] = useState(null);
+
+  console.log(savedChallenge);
   return (
     <div>
       <Routes>
@@ -34,7 +36,7 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/teacherlogin' element={<TeacherLogin />} />
         <Route path='/teacherprofile' element={<TeacherProfile />} />
-        <Route path='/challengeview' element={<ChallengeView />} />
+        <Route path='/challengeview' element={<ChallengeView updateChallenge={setChallenge}/>} />
         <Route path='/forgot-password' element={<ForgetPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/login' element={<StudentLogin />} />
@@ -124,7 +126,7 @@ const App = () => {
           path='/challenge-creation'
           element={
             <PrivateRoute>
-              <ChallengeCreation />
+              <ChallengeCreation savedChallenge={savedChallenge}/>
             </PrivateRoute>
           }
         />
@@ -140,7 +142,7 @@ const App = () => {
           path='/awardbadges'
           element={
             <PrivateRoute>
-              <AwardBadges />
+              <AwardBadges savedChallenge={savedChallenge}/>
             </PrivateRoute>
           }
         />
