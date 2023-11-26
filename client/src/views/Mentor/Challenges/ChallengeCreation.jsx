@@ -27,14 +27,15 @@ export default function ChallengeCreation({savedChallenge}) {
   console.log(savedChallenge);
   const savedId = (savedChallenge == null) ? null : savedChallenge.id;
   const savedMentor = (savedChallenge == null) ? null : savedChallenge.mentor.id;
-  const savedBadge = (savedChallenge == null) ? null : savedChallenge.badge_id;
+  // By default, the challenge should have the badge of id 0
+  const savedBadge = (savedChallenge == null) ? 0 : savedChallenge.badge_id;
 
   const [challengeData, setChallengeData] = useState(defaultChallengeData);
   const [challengeId, setChallengeId] = useState(savedId);
   const [mentorId, setMentorId] = useState(savedMentor);
   const navigate = useNavigate();
   const [selectedBadge, setSelectedBadge] = useState(savedBadge);
-  var saved = false;
+  const [challengeSaved, setChallengeSaved] = useState(false);
 
   // Ensures that non-mentors are navigated away from this page
   useEffect(() => {
@@ -122,7 +123,7 @@ export default function ChallengeCreation({savedChallenge}) {
         const savedChallengeId = response.data.id;
         setChallengeId(savedChallengeId);
         message.success("Challenge Details Saved!");
-        saved = true;
+        setChallengeSaved(true);
         return savedChallengeId;
       }
     }
@@ -130,12 +131,12 @@ export default function ChallengeCreation({savedChallenge}) {
   }
 
   const navigateToChallengeView = async () => {
-    if(saved){
+    if(challengeSaved){
       navigate("/challengeview");
     }
     else{
       message.error("You haven't saved your changes! Are you sure you want to navigate back?");
-      saved = true;
+      setChallengeSaved(true);
     }
     
   }
@@ -196,7 +197,7 @@ export default function ChallengeCreation({savedChallenge}) {
               span: 30,
             }}
           >
-            <button onClick={handleViewActivityTemplate}>Edit Challenge Activity</button>
+            <button onClick={handleViewActivityTemplate}>Save and Edit Challenge Activity</button>
           </Form.Item>
           
           <Form.Item
