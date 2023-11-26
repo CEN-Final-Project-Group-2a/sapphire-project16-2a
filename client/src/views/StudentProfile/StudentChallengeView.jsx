@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { message } from 'antd';
 import {getChallengeDetails} from "../../Utils/requests";
 import {getStudentClassroom} from '../../Utils/requests';
-import {getStudent} from '../../Utils/requests';
+import {getStudentCompletedChallenges} from '../../Utils/requests';
 
 //Tutorial for to-do list, kinda helpful - https://strapi.io/blog/how-to-build-a-to-do-list-application-with-strapi-and-react-js
 //Fetching data from component? - https://stackoverflow.com/questions/67241144/fetch-data-from-strapi-cms-to-nextreact-js-frontend-doesnt-work
 
 
 //Component gets the classroom prop from the profile already made
-const StudentChallengeView = ({studentName}) => {
+const StudentChallengeView = () => {
     const [challenges, setChallenges] = useState([]);
     const [classroom, setClassroom] = useState(null);
     const [completed, setCompleted] = useState([]);
-    //Get student id?
-    //const studentId = localStorage.getItem('studentID');
+
 
     //Get array of challenges based on classroom, all challenges for student
     useEffect(() => {
@@ -30,16 +29,29 @@ const StudentChallengeView = ({studentName}) => {
                     setChallenges([...res.data.classroom.challenges]);
                 }
 
-                //Get array of completed challenges based on student id
                 const studentId = localStorage.getItem('studentID');
-                const studentObject = await getStudent(studentId);
+                //const studentObject = await getStudent(studentId);
 
-                console.log('ID: ', studentId)
+                console.log("step");
 
-                console.log('Student fetchData:', studentObject.data.student);
-                if (studentObject.data.student && studentObject.data.student.challenges) {
-                    setCompleted([...studentObject.data.student.challenges]);
-                }
+                //console.log(Array.isArray(challenges.students));
+
+                const completedChallengesResponse = await getStudentCompletedChallenges(studentId);
+                //console.log("1");
+                const completedChallenges = completedChallengesResponse.data;
+                //console.log("2");
+
+                // Set the completed challenges state
+                setCompleted(completedChallenges);
+                //console.log("3");
+
+                // Filter out completed challenges from the list of all challenges
+                /*const uncompletedChallenges = challenges.filter(challenge =>
+                    !completedChallenges.some(completedChallenge => completedChallenge.id === challenge.id)
+                );*/
+
+                // Set the uncompleted challenges state
+                //setChallenges(uncompletedChallenges);
 
             } catch (error) {
                 console.error(error);
@@ -50,31 +62,8 @@ const StudentChallengeView = ({studentName}) => {
         fetchData();
     }, []);
 
-    /*//Get array of challenges based on student, only challenges student has completed
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await getStudentName(studentName);
-
-                console.log('Student fetchdata:', response.data.student);
-                setClassroom(response.data.student);
-
-                if (response.data.student && response.data.student.challenges) {
-                    setCompleted([...response.data.student.challenges]);
-                }
-
-            } catch (error) {
-                console.error(error);
-                message.error('Error fetching data.');
-            }
-        };
-
-        fetchData();
-    }, []);*/
-
 
     console.log('Challenges array:', challenges);
-    console.log('Completed Challenges array', completed)
 
 
 //Scrolling list for array of challenges, use map function
@@ -86,7 +75,7 @@ const StudentChallengeView = ({studentName}) => {
             <p style={{ color: 'white', fontSize: '20px', paddingLeft: '35px', fontWeight: 'bold'}}>List of Challenges</p>
             <div style={{overflow: 'auto', maxHeight: '75px'}}>
 
-                {challenges && challenges.map((challenge, index) => (
+                {challenges.map((challenge, index) => (
                     <div key={index} style={{ color: 'white', fontSize: '16px' }}>
                         <p style={{ color: 'white', fontSize: '18px', paddingLeft: '35px'}}>{index + 1}. Name: {challenge.name}</p>
                         <p style={{ color: 'white', fontSize: '18px', paddingLeft: '53px'}}>Description: {challenge.description}</p>
