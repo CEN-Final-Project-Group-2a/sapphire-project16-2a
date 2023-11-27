@@ -35,7 +35,6 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/teacherlogin' element={<TeacherLogin />} />
-        <Route path='/teacherprofile' element={<TeacherProfile />} />
         <Route path='/forgot-password' element={<ForgetPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/login' element={<StudentLogin />} />
@@ -169,6 +168,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <ChallengeView updateChallenge={setChallenge}/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/teacherprofile'
+          element={
+            <PrivateRoute>
+              <TeacherProfile />
             </PrivateRoute>
           }
         />
