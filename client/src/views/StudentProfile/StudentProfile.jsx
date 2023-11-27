@@ -1,6 +1,4 @@
 
-export default StudentProfile;
-
 
 
 import { message, Row, Col } from 'antd';
@@ -75,13 +73,7 @@ function StudentProfile(){
                 <Row>
                     <Col flex='auto'>
                         <div id= 'assignedChallengeHeader'>
-                            Assigned Challenges:
-                            {'\n'}
-                            Challenge0
-                            {'\n'}
-                            Challenge1
-                            {'\n'}
-                            Challenge2
+                            <StudentChallengeView/>
                         </div>
                     </Col>
                     <Col flex='auto'>
@@ -96,7 +88,7 @@ function StudentProfile(){
                     </Col>
                 </Row>
             </div>
-            <StudentChallengeView studentName={studentName}/>
+
         </div>
         </body>
         </html>

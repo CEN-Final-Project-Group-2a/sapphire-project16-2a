@@ -23,35 +23,35 @@ const StudentChallengeView = () => {
 
                 //Get list of all challenges for student's classroom
                 console.log('Student Classroom fetchdata:', res.data.classroom);
+
                 setClassroom(res.data.classroom);
 
-                if (res.data.classroom && res.data.classroom.challenges) {
+                if (res.data.classroom.challenges) {
                     setChallenges([...res.data.classroom.challenges]);
                 }
 
                 const studentId = localStorage.getItem('studentID');
-                //const studentObject = await getStudent(studentId);
-
-                console.log("step");
-
-                //console.log(Array.isArray(challenges.students));
 
                 const completedChallengesResponse = await getStudentCompletedChallenges(studentId);
                 //console.log("1");
                 const completedChallenges = completedChallengesResponse.data;
-                //console.log("2");
+                console.log("Completed:", completedChallenges);
 
-                // Set the completed challenges state
+                //Set the completed challenges state
                 setCompleted(completedChallenges);
                 //console.log("3");
 
-                // Filter out completed challenges from the list of all challenges
+                //Filter out completed challenges from the list of all challenges
                 /*const uncompletedChallenges = challenges.filter(challenge =>
-                    !completedChallenges.some(completedChallenge => completedChallenge.id === challenge.id)
+                    !completedChallenges.some(completedChallenge => completedChallenge.id !== challenge.id)
                 );*/
 
+                const uncompletedChallenges = completedChallenges.filter(({ value: first }) => !challenges.some(({ value: second }) => second === first));
+
+                console.log("Non-completed:", uncompletedChallenges);
+
                 // Set the uncompleted challenges state
-                //setChallenges(uncompletedChallenges);
+                setChallenges(uncompletedChallenges);
 
             } catch (error) {
                 console.error(error);
