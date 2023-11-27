@@ -11,7 +11,7 @@ import {getStudentCompletedChallenges} from '../../Utils/requests';
 //Component gets the classroom prop from the profile already made
 const StudentChallengeView = () => {
     const [challenges, setChallenges] = useState([]);
-    const [classroom, setClassroom] = useState(null);
+    const [classroom, setClassroom] = useState([]);
     const [completed, setCompleted] = useState([]);
 
 
@@ -29,24 +29,29 @@ const StudentChallengeView = () => {
                 if (res.data.classroom.challenges) {
                     setChallenges([...res.data.classroom.challenges]);
                 }
+                else
+                {
+                    console.log("Error, no challengs in classroom")
+                }
+
+                console.log('Challenges array:', res.data.classroom.challenges);
 
                 const studentId = localStorage.getItem('studentID');
 
                 const completedChallengesResponse = await getStudentCompletedChallenges(studentId);
                 //console.log("1");
                 const completedChallenges = completedChallengesResponse.data;
-                console.log("Completed:", completedChallenges);
+
 
                 //Set the completed challenges state
                 setCompleted(completedChallenges);
                 //console.log("3");
 
-                //Filter out completed challenges from the list of all challenges
-                /*const uncompletedChallenges = challenges.filter(challenge =>
-                    !completedChallenges.some(completedChallenge => completedChallenge.id !== challenge.id)
-                );*/
 
-                const uncompletedChallenges = completedChallenges.filter(({ value: first }) => !challenges.some(({ value: second }) => second === first));
+                //const uncompletedChallenges = challenges.filter(o1 => !completed.some(o2 => o1.id === o2.id));
+                console.log("Completed:", completed);
+
+                let uncompletedChallenges = res.data.classroom.challenges.filter(o1 => !completed.some(o2 => o1.id === o2.id));
 
                 console.log("Non-completed:", uncompletedChallenges);
 
@@ -63,7 +68,7 @@ const StudentChallengeView = () => {
     }, []);
 
 
-    console.log('Challenges array:', challenges);
+    //console.log('Challenges arraylast:', challenges);
 
 
 //Scrolling list for array of challenges, use map function
