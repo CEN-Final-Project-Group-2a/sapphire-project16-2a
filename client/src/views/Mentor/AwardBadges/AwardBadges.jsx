@@ -13,7 +13,7 @@ import ListView from './ListView';
 import { Col, Row, Form, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-export default function AwardBadges() {
+export default function AwardBadges({savedChallenge}) {
   const [challengeDetails, setChallengeDetails] = useState({
     id: -1,
     name: "",
@@ -25,9 +25,23 @@ export default function AwardBadges() {
 
   const [form] = Form.useForm();
 
+  /*if(savedChallenge != null){
+    setChallengeDetails({
+      id: savedChallenge.id,
+      name: savedChallenge.name,
+      description: savedChallenge.description,
+      activity: savedChallenge.activity,
+    });
+    console.log(challengeDetails);
+  }
+  else{
+    message.error("Challenge data was not loaded from challenge view.")
+  }*/
+
+  //You don't need to get the challenge details from the db because they're already fetched from challenge view but why not...
   useEffect(() => {
     // TODO(sapphire2a): currently challenge id is being hardcoded in, but in future it should be parsed from local storage, similar to BlocklyPage.jsx
-    const challengeId = 36;
+    const challengeId = savedChallenge.id;
     let updatedStudentData = [];
 
     // Retrieves the currently logged-in teacher.
@@ -141,7 +155,7 @@ export default function AwardBadges() {
 
   // TODO(sapphire2a): This should later go to the challenge view page, rather than just the previously viewed page
   const handleBack = () => {
-    navigate(-1);
+    navigate("/challengeview");
   };
 
   return (
