@@ -51,7 +51,7 @@ const StudentChallengeView = () => {
                 //const uncompletedChallenges = challenges.filter(o1 => !completed.some(o2 => o1.id === o2.id));
                 console.log("Completed:", completed);
 
-                let uncompletedChallenges = res.data.classroom.challenges.filter(o1 => !completed.some(o2 => o1.id === o2.id));
+                let uncompletedChallenges = res.data.classroom.challenges.filter(o1 => !completedChallengesResponse.data.some(o2 => o1.id === o2.id));
 
                 console.log("Non-completed:", uncompletedChallenges);
 
