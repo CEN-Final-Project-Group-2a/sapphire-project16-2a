@@ -1,81 +1,104 @@
-import {message} from 'antd';
+
+export default StudentProfile;
+
+
+
+import { message, Row, Col } from 'antd';
 import React, {useEffect, useState} from 'react';
-import{useNavigate} from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-import {getStudentClassroom} from '../../Utils/requests';
-import { getStudent } from '../../Utils/requests';
+import { getStudentClassroom, getCurrentStudent, getStudentCompletedChallenges } from '../../Utils/requests';
 import './StudentProfile.less';
 import {Link} from 'react-router-dom';
 import StudentChallengeView from "./StudentChallengeView";
+import BadgeDisplayList from './BadgeDisplayList/BadgeDisplayList'
 
 function StudentProfile(){
-
-    const navigate = useNavigate();
-    const studentName = localStorage.getItem('studentName');
+    const [studentName, setStudentName] = useState(localStorage.getItem("studentName"));
+    const [completedChallengeList, setCompletedChallengeList] = useState(null);
     const [classroom, setClassroom] = useState(null);
-    //To get scrolling list of student challenges
-    //const [challenges, setChallenges] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const res = await getStudentClassroom();
-            setClassroom(res.data.classroom.name);
-            //console.log(res.data.classroom.name);
+        getCurrentStudent().then((res) => {
             if (res.data) {
-              if (res.data.name) {
-                setLessonModule(res.data.lesson_module);
-              }
+                // Note: There could be multiple students logged in, so for now the code just gets one of them.
+                // In future, it could be helpful to have a menu to select which student's profile the logged-in students want to view.
+                setStudentName(res.data.students[0].name);
+                const studentId = res.data.students[0].id;
+                getStudentCompletedChallenges(studentId).then((res) => {
+                    if (res.data) {
+                        setCompletedChallengeList(res.data);
+                    } else {
+                        message.error(res.err)
+                    }
+                })
             } else {
-              message.error(res.err);
+                message.error(res.err);
             }
-          } catch {}
+        })
+
+        const fetchData = async () => {
+            try {
+                const res = await getStudentClassroom();
+                setClassroom(res.data.classroom.name);
+                if (res.data) {
+                    if (res.data.name) {
+                        setLessonModule(res.data.lesson_module);
+                    }
+                } else {
+                    message.error(res.err);
+                }
+            } catch {}
         };
         fetchData();
-      }, []);
+    }, []);
+
 
     return(
-
         <html>
         <body id='pbody'>
-
-       
-       <div profile='profile'>
-        <NavBar />  
-       
-       <div id='sp-header'>
-       <img id="profilepic" src = "/images/PFP.png" alt="pfp"/>
-       <div id= 'studentprofile-name'>{studentName}'s Profile</div>
-
-
-       <div id= 'classroomShower'>
-        Current Course:
-       </div>
-
-       
-       <Link to="/Student">
-        <div id = 'classroom'>
-        {classroom}
+        <div profile='profile'>
+            <NavBar />
+            <div id='sp-header'>
+                <Row>
+                    <Col span={12}>
+                        <img id="profilepic" src = "/images/PFP.png" alt="pfp"/>
+                    </Col>
+                    <Col span={12}>
+                        <div id="badgeDisplayWidget">
+                            <BadgeDisplayList completedChallengeList={completedChallengeList}/>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <div id= 'studentprofile-name'>{studentName}'s Profile</div>
+                </Row>
+                <Row>
+                    <Col flex='auto'>
+                        <div id= 'assignedChallengeHeader'>
+                            Assigned Challenges:
+                            {'\n'}
+                            Challenge0
+                            {'\n'}
+                            Challenge1
+                            {'\n'}
+                            Challenge2
+                        </div>
+                    </Col>
+                    <Col flex='auto'>
+                        <div id= 'classroomShower'>
+                            Current Course:
+                            <Link to="/Student">
+                                <div id = 'classroom'>
+                                    {classroom}
+                                </div>
+                            </Link>
+                        </div>
+                    </Col>
+                </Row>
+            </div>
+            <StudentChallengeView studentName={studentName}/>
         </div>
-        </Link>
-
-        <div id= 'badgeHeader'>
-        Achievements:
-        {'\n'}
-        Badge0
-        {'\n'}
-        Badge1
-        {'\n'}
-        Badge2
-        
-        </div>
-
-               <StudentChallengeView studentName={studentName}/>
-
-       </div>
-       </div>
-       
-       </body>
+        </body>
         </html>
     );
 }
