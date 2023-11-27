@@ -33,7 +33,6 @@ function Student() {
   };
 
   const studentName = localStorage.getItem('studentName');
-  const tempBadges = ['Badge0, Badge1, Badge2'];
 
   return (
     

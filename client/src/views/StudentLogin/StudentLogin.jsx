@@ -73,6 +73,7 @@ export default function StudentLogin() {
     if (!fails.includes(true)) {
       const res = await postJoin(joinCode, ids);
       localStorage.setItem('studentName', admittedStudent.name);
+      localStorage.setItem('studentID', admittedStudent.id);
       navigate('/student');
 
       if (res.data) {

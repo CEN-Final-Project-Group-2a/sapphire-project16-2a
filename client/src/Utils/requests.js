@@ -128,6 +128,22 @@ export const getStudentClassroom = async () =>
     error: 'Classroom information could not be retrieved',
   });
 
+export const getStudentCompletedChallenges = async (id) =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/challenges/${id}`,
+    auth: true,
+    error: 'Student challenge could not be retrieved',
+  });
+
+  export const getCurrentStudent = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/me`,
+    auth: true,
+    error: 'Your student info could not be retrieved.',
+  });
+
 export const getClassrooms = async (ids) =>
   Promise.all(ids.map(async (id) => (await getClassroom(id)).data));
 
@@ -145,6 +161,14 @@ export const getStudent = async (id) =>
     auth: true,
     error: 'Student info could not be retrieved.',
   });
+
+export const getStudentName = async (name) =>
+    makeRequest({
+        method: GET,
+        path: `${server}/students/${name}`,
+        auth: true,
+        error: 'Student info could not be retrieved.',
+    });
 
 export const postJoin = async (code, ids) =>
   makeRequest({
@@ -725,7 +749,7 @@ export const getClassroomWorkspace = async (id) =>
     method: GET,
     path: `${server}/classroom/workspaces/${id}`,
     auth: true,
-    error: 'Unable to retrive classroom workspaces',
+    error: 'Unable to retrieve classroom workspaces',
   });
 
 export const getChallengeDetails = async (id) =>

@@ -105,8 +105,14 @@ export default function NavBar() {
           &nbsp; Report a Bug
         </Menu.Item>
       ) : null}
+      {shouldShowRoute('StudentProfile') ? (
+        <Menu.Item key='10' onClick={() => handleRouteChange(routes.StudentProfile)}>
+          <i className='fa fa-user' />
+          &nbsp; View Profile
+        </Menu.Item>
+      ) : null}
       {shouldShowRoute('SignOut') ? (
-        <Menu.Item key='10' onClick={() => handleLogout()}>
+        <Menu.Item key='11' onClick={() => handleLogout()}>
           <i className='fa fa-sign-out-alt' />
           &nbsp; Sign Out
         </Menu.Item>

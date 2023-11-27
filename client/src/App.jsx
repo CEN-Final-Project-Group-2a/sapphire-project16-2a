@@ -35,7 +35,6 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/teacherlogin' element={<TeacherLogin />} />
-        <Route path='/teacherprofile' element={<TeacherProfile />} />
         <Route path='/forgot-password' element={<ForgetPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/login' element={<StudentLogin />} />
@@ -121,6 +120,25 @@ const App = () => {
             </PrivateRoute>
           }
         />
+
+          <Route
+              path='/StudentProfile'
+              element={
+                  <PrivateRoute>
+                      <StudentProfile />
+                  </PrivateRoute>
+              }
+          />
+
+          <Route
+              path='/challenge-creation'
+                 element={
+              <PrivateRoute>
+                  <ChallengeCreation />
+              </PrivateRoute>} />
+
+          <Route path='/bugreport' element={<BugReport />} />
+
         <Route
           path='/challenge-creation'
           element={
@@ -153,7 +171,16 @@ const App = () => {
             </PrivateRoute>
           }
         />
+        <Route
+          path='/teacherprofile'
+          element={
+            <PrivateRoute>
+              <TeacherProfile />
+            </PrivateRoute>
+          }
+        />
         <Route path='/bugreport' element={<BugReport />} />
+
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>
