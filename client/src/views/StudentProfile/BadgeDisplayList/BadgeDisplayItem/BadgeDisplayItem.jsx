@@ -1,5 +1,5 @@
+import Badge0 from "../../../../Images/Badge0.jpg"
 import Badge1 from "../../../../Images/Badge1.jpg"
-import Badge2 from "../../../../Images/Badge2.jpg"
 import "./BadgeDisplayItem.less"
 
 function BadgeDisplayItem({name, badge_id}) {
@@ -15,11 +15,11 @@ function BadgeDisplayItem({name, badge_id}) {
 
 // FIXME(ccastillo): Do we want a default image for badge whose picture we can't find?
 const badgeIdToAddress = (badge_id) => {
-    if (badge_id === "Badge1") {
-        return Badge1;
+    if (badge_id === "Badge0") {
+        return Badge0;
     }
-    else if (badge_id === "Badge2") {
-        return Badge2;
+    else if (badge_id === "Badge1") {
+        return Badge1;
     }
 }
 
