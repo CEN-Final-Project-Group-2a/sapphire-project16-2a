@@ -128,6 +128,7 @@ export const getStudentClassroom = async () =>
     error: 'Classroom information could not be retrieved',
   });
 
+
 export const getStudentCompletedChallenges = async (id) =>
     makeRequest({
         method: GET,
@@ -135,7 +136,6 @@ export const getStudentCompletedChallenges = async (id) =>
         auth: true,
         error: 'Student challenge could not be retrieved',
     });
-
 export const getClassrooms = async (ids) =>
   Promise.all(ids.map(async (id) => (await getClassroom(id)).data));
 
