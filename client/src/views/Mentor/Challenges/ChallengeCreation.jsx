@@ -24,7 +24,7 @@ export default function ChallengeCreation({savedChallenge}) {
     description: '',
   } : savedChallenge;
 
-  console.log(savedChallenge);
+  console.log(savedChallenge); // if undefined -> check app.js or challengeview
   const savedId = (savedChallenge == null) ? null : savedChallenge.id;
   const savedMentor = (savedChallenge == null) ? null : savedChallenge.mentor.id;
   // By default, the challenge should have the badge of id 0

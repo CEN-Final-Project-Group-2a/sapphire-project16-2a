@@ -27,8 +27,7 @@ import ChallengeView from './views/Mentor/Challenges/ChallengeView';
 
 const App = () => {
   const [savedChallenge, setChallenge] = useState(null);
-
-  console.log(savedChallenge);
+  
   return (
     <div>
       <Routes>
@@ -130,14 +129,7 @@ const App = () => {
               }
           />
 
-          <Route
-              path='/challenge-creation'
-                 element={
-              <PrivateRoute>
-                  <ChallengeCreation />
-              </PrivateRoute>} />
-
-          <Route path='/bugreport' element={<BugReport />} />
+        <Route path='/bugreport' element={<BugReport />} />
 
         <Route
           path='/challenge-creation'
@@ -167,7 +159,7 @@ const App = () => {
           path='/challengeview'
           element={
             <PrivateRoute>
-              <ChallengeView updateChallenge={setChallenge}/>
+              <ChallengeView setChallenge={setChallenge}/>
             </PrivateRoute>
           }
         />

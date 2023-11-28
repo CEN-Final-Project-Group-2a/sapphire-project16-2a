@@ -5,12 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { getChallenges, getClassrooms, getMentor } from '../../../Utils/requests';
 import Badge0 from "../../../Images/Badge0.jpg";
 import Badge1 from "../../../Images/Badge1.jpg";
-import LessonEditor from "../../ContentCreator/LessonEditor/LessonEditor";
 
 
 
 //container for teacher profile, no functionality currently - placeholder div
-export default function ChallengeView({updateChallenge}) {
+export default function ChallengeView({setChallenge}) {
   const navigate = useNavigate();
   const [getDrafts, setDrafts] = useState([]);
   const [getAssigned, setAssigned] = useState([]);
@@ -62,8 +61,8 @@ export default function ChallengeView({updateChallenge}) {
     //handle change for drafts
     //should direct user to create challenge page with previously filled out fields - editable
     //handle navigation
-    updateChallenge(challenge);
-    
+    console.log(challenge);
+    setChallenge(challenge);
     navigate('/challenge-creation');
   
   }
@@ -71,7 +70,8 @@ export default function ChallengeView({updateChallenge}) {
     //handle change for past assignments
     //should direct user to create challenge page with previously filled out fields - not editable
     //handle navigation
-    updateChallenge(challenge);
+    console.log(challenge);
+    setChallenge(challenge);
     navigate("/awardbadges");
   }
   function handleChangeNew(){
