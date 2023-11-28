@@ -77,13 +77,13 @@ const StudentChallengeView = () => {
         <div>
             <p style={{ color: 'white', fontSize: '20px', paddingLeft: '35px', fontWeight: 'bold'}}></p>
             <p style={{ color: 'white', fontSize: '20px', paddingLeft: '35px', fontWeight: 'bold'}}></p>
-            <p style={{ color: 'white', fontSize: '20px', paddingLeft: '35px', fontWeight: 'bold'}}>List of Challenges</p>
+            <p style={{ color: 'white', fontSize: '20px', paddingLeft: '0px', fontWeight: 'bold'}}>List of Challenges</p>
             <div style={{overflow: 'auto', maxHeight: '75px'}}>
 
                 {challenges.map((challenge, index) => (
                     <div key={index} style={{ color: 'white', fontSize: '16px' }}>
-                        <p style={{ color: 'white', fontSize: '18px', paddingLeft: '35px'}}>{index + 1}. Name: {challenge.name}</p>
-                        <p style={{ color: 'white', fontSize: '18px', paddingLeft: '53px'}}>Description: {challenge.description}</p>
+                        <p style={{ color: 'white', fontSize: '18px', paddingLeft: '0px'}}>{index + 1}. Name: {challenge.name}</p>
+                        <p style={{ color: 'white', fontSize: '18px', paddingLeft: '23px'}}>Description: {challenge.description}</p>
                     </div>
 
                 ))

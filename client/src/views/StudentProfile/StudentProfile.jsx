@@ -77,7 +77,7 @@ function StudentProfile(){
                         </div>
                     </Col>
                     <Col flex='auto'>
-                        <div id= 'classroomShower'>
+                        <div id= 'classroomShower' style={{paddingLeft: '50px'}}>
                             Current Course:
                             <Link to="/Student">
                                 <div id = 'classroom'>
