@@ -27,14 +27,13 @@ export default function ChallengeCreation({savedChallenge}) {
   console.log(savedChallenge); // if undefined -> check app.js or challengeview
   const savedId = (savedChallenge == null) ? null : savedChallenge.id;
   const savedMentor = (savedChallenge == null) ? null : savedChallenge.mentor.id;
-  // By default, the challenge should have the badge of id 0
-  const savedBadge = (savedChallenge == null) ? 0 : savedChallenge.badge_id;
 
   const [challengeData, setChallengeData] = useState(defaultChallengeData);
   const [challengeId, setChallengeId] = useState(savedId);
   const [mentorId, setMentorId] = useState(savedMentor);
   const navigate = useNavigate();
-  const [selectedBadge, setSelectedBadge] = useState(savedBadge);
+  // This variable monitors the state of the badge selection carousel
+  const [selectedBadge, setSelectedBadge] = useState(null);
   const [challengeSaved, setChallengeSaved] = useState(false);
 
   // Ensures that non-mentors are navigated away from this page
@@ -49,9 +48,12 @@ export default function ChallengeCreation({savedChallenge}) {
     })
   }, []);
 
-  // Detect when the user has chosen a new badge with the selection widget
+  // Detect when the user has chosen a new badge from the carousel
   useEffect(() => {
-    setChallengeData({...challengeData, badge_id: "Badge" + selectedBadge})
+    if (selectedBadge != null) {
+      // When selectedBadge is null, the user has not yet selected a badge from the carousel
+      setChallengeData({...challengeData, badge_id: "Badge" + selectedBadge});
+    }
   }, [selectedBadge]);
 
   // Returns the activity object associated with an challenge if one is found to already exist.
