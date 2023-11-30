@@ -206,7 +206,7 @@ export default function ChallengeCreation({savedChallenge}) {
               span: 30,
             }}
           >
-            <button onClick={handleSaveChallengeDetails}>Save Challenge</button>
+            <button onClick={handleSaveChallengeDetails} style={{marginRight: "50px"}}>Save Challenge</button>
             <button onClick={navigateToAssignChallenge}>Continue Assigning Challenge to Classrooms</button>
           </Form.Item>
         </Form>
