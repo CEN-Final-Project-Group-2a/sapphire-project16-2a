@@ -112,6 +112,14 @@ export const getMentor = async () =>
     error: 'Your classroom manager information could not be retrieved.',
   });
 
+  export const getMentorProfilePicture = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/classroom-managers/me/profile_picture`,
+    auth: true,
+    error: 'Your classroom manager information could not be retrieved.',
+  });
+
 export const getClassroom = async (id) =>
   makeRequest({
     method: GET,
@@ -142,6 +150,14 @@ export const getStudent = async (id) =>
   makeRequest({
     method: GET,
     path: `${server}/students/${id}`,
+    auth: true,
+    error: 'Student info could not be retrieved.',
+  });
+
+  export const getCurrentStudent = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/me`,
     auth: true,
     error: 'Student info could not be retrieved.',
   });
@@ -327,6 +343,28 @@ export const addStudent = async (name, character, classroom) =>
     },
     auth: true,
     error: 'Failed to add student.',
+  });
+
+  export const updateTeacherProfilePicture = async (id, base64profile) =>
+  makeRequest({
+    method: PUT,
+    path: `${server}/mentors/${id}`,
+    data: {
+      profile_picture: base64profile,
+    },
+    auth: true,
+    error: 'Failed to update Profile.',
+  });
+
+  export const updateStudentProfilePicture = async (id, base64profile) =>
+  makeRequest({
+    method: PUT,
+    path: `${server}/students/${id}`,
+    data: {
+      profile_picture: base64profile,
+    },
+    auth: true,
+    error: 'Failed to update Profile.',
   });
 
 export const addStudents = async (students, classroom) =>

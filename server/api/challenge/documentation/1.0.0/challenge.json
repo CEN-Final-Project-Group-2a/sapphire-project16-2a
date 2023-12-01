@@ -536,6 +536,10 @@
               "last_name": {
                 "type": "string"
               },
+
+              "profile_picture": {
+                "type": "string"
+              },
               "school": {
                 "type": "string"
               },

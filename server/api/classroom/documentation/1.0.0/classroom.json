@@ -890,6 +890,9 @@
                 "last_name": {
                   "type": "string"
                 },
+                "profile_picture": {
+                  "type": "string"
+                },
                 "school": {
                   "type": "string"
                 },
@@ -947,6 +950,9 @@
                   "type": "boolean"
                 },
                 "last_logged_in": {
+                  "type": "string"
+                },
+                "profile_picture": {
                   "type": "string"
                 },
                 "created_by": {

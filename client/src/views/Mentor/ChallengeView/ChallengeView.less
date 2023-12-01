@@ -1,0 +1,79 @@
+@import '../../../assets/style.less';
+
+//custom css file for teacher profile to be used when necessary
+#drafts{
+  display: inline-grid;
+  margin: 6vh 2vh 4vh auto;
+  width: 40vw;
+  height: 45vw;
+  background: #colors[senary];
+  border-radius: 5px;
+  border: 2px solid #colors[secondary];
+}
+#past-assigned{
+  display: inline-grid;
+  margin: 6vh 2vh 4vh auto;
+  width: 40vw;
+  height: 45vw;
+  background: #colors[senary];
+  border-radius: 5px;
+  border: 2px solid #colors[secondary];
+}
+#challenge-header{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
+  display:inline-block;
+  align-content: center;
+  font-size: 1.5vw;
+  font-weight: 700;
+  height: 5vw;
+  padding: 1vw;
+  color: #colors[text-secondary];
+  background: #colors[secondary];
+}
+
+
+#challenge-wrapper{
+  display: inline-block;
+  height:40vw;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #colors[senary];
+	overflow: auto;
+	scroll-behavior: smooth;
+}
+tr {
+  background-color: white;
+  border: 1px solid black;
+}
+td {
+  cursor: default;
+  padding: 0.75vw;
+  font-size: medium;
+  width:13.33vw;
+}
+
+#icon:hover {
+  cursor: pointer;
+	color: #colors[secondary];
+}
+
+
+#button {
+  display: inline-block;
+  width: 20vw;
+  height: auto;
+  padding: 10px;
+  font-size: 1.25vw;
+  font-weight: 700;
+  border-radius: 30px;
+  background: #colors[quaternary];
+  border: none;
+  color: #colors[text-primary];
+  transition: 0.25s;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
+
+  &:hover {
+    width: 22vw;
+    background: #colors[quinary];
+  }
+}

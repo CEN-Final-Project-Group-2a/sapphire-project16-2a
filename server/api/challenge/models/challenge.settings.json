@@ -1,4 +1,5 @@
 {
+
   "kind": "collectionType",
   "collectionName": "challenges",
   "info": {
@@ -32,3 +33,4 @@
     }
   }
 }
+

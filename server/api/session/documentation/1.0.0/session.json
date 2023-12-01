@@ -616,6 +616,9 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+                "profile_picture": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
