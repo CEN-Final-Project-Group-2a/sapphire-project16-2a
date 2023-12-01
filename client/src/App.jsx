@@ -10,7 +10,6 @@ import ChallengeCreation from './views/Mentor/Challenges/ChallengeCreation';
 import Classroom from './views/Mentor/Classroom/Classroom';
 import Dashboard from './views/Mentor/Dashboard/Dashboard';
 import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
-import StudentProfile from './views/Student/StudentProfile/StudentProfile';
 import ChallengeView from './views/Mentor/ChallengeView/ChallengeView';
 import NotFound from './views/NotFound';
 import Replay from './views/Replay/Replay';

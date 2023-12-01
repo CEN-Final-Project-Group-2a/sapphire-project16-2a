@@ -2,22 +2,28 @@ import {message} from 'antd';
 import React, {useEffect, useState} from 'react';
 import{useNavigate} from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-import {getStudentClassroom} from '../../Utils/requests';
+import {getStudentClassroom, getCurrentStudent} from '../../Utils/requests';
 import { getStudent } from '../../Utils/requests';
 import './StudentProfile.less';
 import {Link} from 'react-router-dom';
+import Profile from './StudentProfilePic';
+import default_profile from '../../assets/default.png';
 
 function StudentProfile(){
 
     const navigate = useNavigate();
     const studentName = localStorage.getItem('studentName');
     const [classroom, setClassroom] = useState(null);
+    const [profilepicture, loadProfile] = useState(default_profile);
+
 
     useEffect(() => {
         const fetchData = async () => {
           try {
             const res = await getStudentClassroom();
+            const currentStudent = await getCurrentStudent();
             setClassroom(res.data.classroom.name);
+            loadProfile(currentStudent.data.students[0].profile_picture);
             console.log(res.data.classroom.name);
             if (res.data) {
               if (res.data.name) {
@@ -39,9 +45,16 @@ function StudentProfile(){
        
        <div profile='profile'>
         <NavBar />  
-       
+        <div className="update">
+        
+        </div>
        <div id='sp-header'>
-       <img id="profilepic" src = "/images/PFP.png" alt="pfp"/>
+        <div class = "profilepicture">
+        <img className="profile_picture_styling" src={profilepicture}  alt="Profile"/>
+        <Profile />
+        </div>
+       
+       
        <div id= 'studentprofile-name'>{studentName}'s Profile</div>
 
 

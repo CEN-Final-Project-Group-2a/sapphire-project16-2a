@@ -1,5 +1,5 @@
 import React from 'react';
-import UpdateProfile from '../../UpdateProfile/UpdateProfile';
+import UpdateProfile from '../UpdateProfile/UpdateProfile';
 
   const ProfilePic = () => {
 
