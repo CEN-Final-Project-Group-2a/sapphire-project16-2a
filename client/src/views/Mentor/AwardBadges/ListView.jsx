@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Switch, Table } from 'antd';
+import PropTypes from 'prop-types';
 
 export default function ListView(props) {
   const {
@@ -7,6 +8,12 @@ export default function ListView(props) {
     onSelectToggle,
     form,
   } = props;
+
+  ListView.propTypes = {
+    studentData: PropTypes.array.isRequired,
+    onSelectToggle: PropTypes.func.isRequired,
+    form: PropTypes.object.isRequired,
+  }
 
   const columns = [
     {

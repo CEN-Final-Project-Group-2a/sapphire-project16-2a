@@ -46,10 +46,10 @@ export default function ChallengeView({setChallenge}) {
   }, []);
 
   function handleBadges(id){
-    if(id == "Badge0" || id == "id_0" || id == 0){
+    if(id == "Badge0"){
       return Badge0;
     }
-    else if(id == "Badge1" || id == "id_1" || id == 1){
+    else if(id == "Badge1"){
       return Badge1;
     }
     else{

@@ -16,25 +16,29 @@ function StudentProfile(){
     const [classroom, setClassroom] = useState(null);
 
     useEffect(() => {
-        getCurrentStudent().then((res) => {
-            if (res.data) {
+        const fetchCompletedChallengeList = async (studentId) => {
+            const completedChallengesRes = await getStudentCompletedChallenges(studentId);
+            if (completedChallengesRes.data) {
+                setCompletedChallengeList(completedChallengesRes.data);
+            } else {
+                message.error(completedChallengesRes.err)
+            }
+        }
+
+        const fetchCurrentStudentData = async () => {
+            const currentStudentRes = await getCurrentStudent();
+            if (currentStudentRes.data) {
                 // Note: There could be multiple students logged in, so for now the code just gets one of them.
                 // In future, it could be helpful to have a menu to select which student's profile the logged-in students want to view.
-                setStudentName(res.data.students[0].name);
-                const studentId = res.data.students[0].id;
-                getStudentCompletedChallenges(studentId).then((res) => {
-                    if (res.data) {
-                        setCompletedChallengeList(res.data);
-                    } else {
-                        message.error(res.err)
-                    }
-                })
+                setStudentName(currentStudentRes.data.students[0].name);
+                const studentId = currentStudentRes.data.students[0].id;
+                fetchCompletedChallengeList(studentId);
             } else {
-                message.error(res.err);
+                message.error(currentStudentRes.err);
             }
-        })
+        }
 
-        const fetchData = async () => {
+        const fetchStudentClassroomData = async () => {
             try {
                 const res = await getStudentClassroom();
                 setClassroom(res.data.classroom.name);
@@ -47,7 +51,9 @@ function StudentProfile(){
                 }
             } catch {}
         };
-        fetchData();
+
+        fetchCurrentStudentData();
+        fetchStudentClassroomData();
     }, []);
 
 
