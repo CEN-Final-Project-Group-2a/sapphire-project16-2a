@@ -186,7 +186,7 @@ export default function AwardBadges({savedChallenge}) {
               <button onClick={handleViewActivityTemplate}>View Challenge Activity Template</button>
             </Row>
             <Row>
-              <button onClick={() => handleAwardBadgeToStudents(studentData)}>Award Badge to Selected Students</button>
+              <button onClick={() => handleAwardBadgeToStudents()}>Award Badge to Selected Students</button>
             </Row>
           </Col>
         </Row>
