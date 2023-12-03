@@ -1,15 +1,18 @@
-//Import stuff
-import React, { useEffect, useRef, useState, useReducer } from 'react';
-import Badge1 from "../../../Images/Badge1.jpg";
-import Badge2 from "../../../Images/Badge2.jpg";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Badge0 from "../../../../Images/Badge0.jpg";
+import Badge1 from "../../../../Images/Badge1.jpg";
 
 //Function component to select/view badges
 function BadgeSelection ({onBadgeSelect})
 {
+    BadgeSelection.propTypes = {
+        onBadgeSelect: PropTypes.func.isRequired,
+    }
     //State variable to keep track of current badge using ID
-    const [currentBadgeID, setBadgeID] = useState(0);
+    const [currentBadgeID, setCurrentBadgeID] = useState(0);
     //Array of badge images - will add more later as I draw them
-    const badgeImages = [Badge1, Badge2];
+    const badgeImages = [Badge0, Badge1];
 
     //Style for the badge carousel
     const sliderStyles = {
@@ -60,29 +63,21 @@ function BadgeSelection ({onBadgeSelect})
     const goToPrevious = () => {
         const isFirstBadge = currentBadgeID === 0;
         const newIndex = isFirstBadge ? badgeImages.length - 1 : currentBadgeID - 1;
-        setBadgeID(newIndex);
+        setCurrentBadgeID(newIndex);
     }
 
     //Function to navigate to next badge
     const goToNext = () => {
         const isLastBadge = currentBadgeID === badgeImages.length - 1;
         const newIndex = isLastBadge ? 0 : currentBadgeID + 1;
-        setBadgeID(newIndex);
+        setCurrentBadgeID(newIndex);
     }
 
     //Function to select current badge, and pass to parent component, to use
     const selectBadge = () => {
-        //Console log to show button is working
-        console.log("Button pressed");
         onBadgeSelect(currentBadgeID);
     }
 
-    //Make button appear over other things
-    const buttonStyle = {
-        zIndex: 2000,
-
-
-    }
     //Fixing sonarcloud bug
     const keyboardListener = (event) => {
         //Left and right arrows
@@ -109,10 +104,7 @@ function BadgeSelection ({onBadgeSelect})
                 <button onClick={selectBadge}>Select the badge</button>
             </div>
         </div>
-
-
     )
-
 }
 
 export default BadgeSelection;
