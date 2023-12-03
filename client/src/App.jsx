@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
@@ -26,7 +26,7 @@ import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
 import ChallengeView from './views/Mentor/Challenges/ChallengeView';
 
 const App = () => {
-  const [savedChallenge, setChallenge] = useState(null);
+  const [savedChallenge, setSavedChallenge] = useState(null);
   
   return (
     <div>
@@ -159,7 +159,7 @@ const App = () => {
           path='/challengeview'
           element={
             <PrivateRoute>
-              <ChallengeView setChallenge={setChallenge}/>
+              <ChallengeView setChallenge={setSavedChallenge}/>
             </PrivateRoute>
           }
         />

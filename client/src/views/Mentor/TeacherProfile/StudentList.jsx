@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import './TeacherProfile.less';
-import { getChallenges, getStudents, getClassrooms, getMentor } from '../../../Utils/requests';
+import { getChallenges, getClassrooms, getMentor } from '../../../Utils/requests';
 import { Menu, Dropdown } from 'antd';
 import Badge0 from "../../../Images/Badge0.jpg";
 import Badge1 from "../../../Images/Badge1.jpg";
@@ -10,9 +10,8 @@ import { DownOutlined } from '@ant-design/icons';
 export default function StudentList(props) {
   const [students, setStudents] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
-  const [filterName, setName] = useState("All Classrooms");
+  const [filterName, setFilterName] = useState("All Classrooms");
   const [filter, setFilter] = useState(0); //0 = all classrooms
-  const [studentBadges, setBadges] = useState([]);
   const [challenges, setChallenges] = useState([]);
 
   useEffect(() => { //get challenge data from database
@@ -27,7 +26,7 @@ export default function StudentList(props) {
         getClassrooms(classIds).then((classes) => {
           setClassrooms(classes);
           let st = [];
-          classrooms.forEach((curr) => {
+          classes.forEach((curr) => {
             curr.students.forEach((student)=> {st.push(student);})
           });
           setStudents(st);
@@ -44,36 +43,38 @@ export default function StudentList(props) {
         message.error(res.err);
       }
     });
-  }, [students]);
+  }, []);
 
-  var num = 1;
   
   
   function handleFilter(classId, className){
     setFilter(classId);
-    setName(className);
+    setFilterName(className);
   }
 
-  const menu = (
-    <Menu id='menu'>
-      { classrooms.map(classroom => 
-          <Menu.Item key={num++} onClick={() => handleFilter(classroom.id, classroom.name)}>
-            <i />
-            &nbsp; {classroom.name}
-          </Menu.Item>
-      )}
-      {(<Menu.Item key={0} onClick={() => handleFilter(0, "All Classrooms")}>
-            <i />
-            &nbsp; All Classrooms
-          </Menu.Item>)}
-    </Menu>
-  );
+  const menu = () => {
+    let num = 1;
+    return (
+      <Menu id='menu'>
+        { classrooms.map(classroom =>
+            <Menu.Item key={num++} onClick={() => handleFilter(classroom.id, classroom.name)}>
+              <i />
+              &nbsp; {classroom.name}
+            </Menu.Item>
+        )}
+        {(<Menu.Item key={0} onClick={() => handleFilter(0, "All Classrooms")}>
+              <i />
+              &nbsp; All Classrooms
+            </Menu.Item>)}
+      </Menu>
+    )
+  }
 
   function getBadge(id){
-    if(id == "Badge0" || id == "id_0" || id == 0){
+    if(id == "Badge0"){
       return Badge0;
     }
-    else if(id == "Badge1" || id == "id_1" || id == 1){
+    else if(id == "Badge1"){
       return Badge1;
     }
     else{
@@ -97,21 +98,20 @@ export default function StudentList(props) {
     if(badges.length != 0){
       return (
         badges.map(badge =>
-          <><img src={getBadge(badge)} id='badge'/> {'  '}</>
+          <><img src={getBadge(badge)} alt={badge} id='badge'/> {'  '}</>
         )
       );
     }
     else{
       //student doesn't have badges -> placeholder badge
-      return(<><i style={{color: 'lightgray'}} className='fa fa-medal fa-2x' /></>); 
+      return(<i style={{color: 'lightgray'}} alt='placeholder badge' className='fa fa-medal fa-2x' />);
     }
     
   }
  
   
 
-  function displayStudents(){
-
+  function displayStudents() {
     return (students.filter((student) => filter == 0 || student.classroom == filter).map(student=>{
       //displays each student in table
       //replace icon with profile picture later
@@ -129,12 +129,11 @@ export default function StudentList(props) {
     }));
   }
 
-
   return (
     <div id='student-wrapper'>
       <div id='student-header'>
         <div id='header-text' style={{marginLeft:'1vw'}}>My Students</div>
-        <div id='dropdown-wrapper'><Dropdown overlay={menu} trigger={['click']}>
+        <div id='dropdown-wrapper'><Dropdown overlay={menu()} trigger={['click']}>
           <button
             //className='ant-dropdown-link'
             id='filter-students'
