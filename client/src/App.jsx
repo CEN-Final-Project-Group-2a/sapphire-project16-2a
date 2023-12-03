@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
@@ -10,8 +10,7 @@ import AwardBadges from './views/Mentor/AwardBadges/AwardBadges';
 import ChallengeCreation from './views/Mentor/Challenges/ChallengeCreation';
 import Classroom from './views/Mentor/Classroom/Classroom';
 import Dashboard from './views/Mentor/Dashboard/Dashboard';
-import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
-import ChallengeView from './views/Mentor/ChallengeView/ChallengeView';
+import ChallengeView from './views/Mentor/Challenges/ChallengeView';
 import NotFound from './views/NotFound';
 import Replay from './views/Replay/Replay';
 import ActivityLevelReport from './views/Researcher/ActivityLevelReport';
@@ -25,7 +24,6 @@ import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import StudentProfile from './views/StudentProfile/StudentProfile'
 import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
-import ChallengeView from './views/Mentor/Challenges/ChallengeView';
 
 const App = () => {
   const [savedChallenge, setChallenge] = useState(null);
@@ -36,7 +34,6 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/teacherlogin' element={<TeacherLogin />} />
-        <Route path='/challengeview' element={<ChallengeView />} />
         <Route path='/forgot-password' element={<ForgetPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/login' element={<StudentLogin />} />

@@ -14,9 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-
-    "x-generation-date": "11/19/2023 10:13:20 PM"
-
+    "x-generation-date": "12/03/2023 9:17:08 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -12727,7 +12725,6 @@
               "profile_picture": {
                 "type": "string"
               },
-
               "school": {
                 "type": "string"
               },
@@ -12922,6 +12919,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "profile_picture": {
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
@@ -13268,14 +13268,12 @@
                 "badge_id": {
                   "type": "string"
                 },
-
                 "students": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   }
                 },
-
                 "published_at": {
                   "type": "string"
                 },

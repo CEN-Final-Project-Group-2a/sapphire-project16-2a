@@ -77,7 +77,7 @@ export default function NavBar() {
           key='5'
           onClick={() => handleRouteChange(routes.TeacherLogin)}
         >
-         
+          <i className='fa fa-sign-in-alt' />
           &nbsp; User Login
         </Menu.Item>
       ) : null}
@@ -95,24 +95,11 @@ export default function NavBar() {
           &nbsp; Profile
         </Menu.Item>
       ) : null}
-      
       {shouldShowRoute('About') ? (
         <Menu.Item key='8' onClick={() => handleRouteChange(routes.About)}
         >
           <i className='fa fa-info-circle' />
           &nbsp; About
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('ChallengeView') ? (
-        <Menu.Item key='7' onClick={() => handleRouteChange(routes.ChallengeView)}>
-          <i className='fa fa-star' />{" "}
-          &nbsp; Challenges
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('TeacherProfile') ? (
-        <Menu.Item key='8' onClick={() => handleRouteChange(routes.TeacherProfile)}>
-          <i className='fa fa-user-alt' />{" "}
-          &nbsp; Profile
         </Menu.Item>
       ) : null}
       {shouldShowRoute('BugReport') ? (
@@ -133,14 +120,6 @@ export default function NavBar() {
           &nbsp; Sign Out
         </Menu.Item>
       ) : null}
-      {shouldShowRoute('StudentProfile') ? (
-        <Menu.Item key='7' onClick={() => handleRouteChange(routes.StudentProfile)}
-        >
-          <i className='fa fa-user-alt' />
-          &nbsp; Profile
-        </Menu.Item>
-      ) : null}
-      
     </Menu>
   );
 
