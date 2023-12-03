@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import NavBar from "../../../components/NavBar/NavBar";
 import './ChallengeView.less';
 import { useNavigate } from 'react-router-dom';
-import { getChallenges, getClassrooms, getMentor } from '../../../Utils/requests';
+import { getChallenges, getMentor } from '../../../Utils/requests';
 import Badge0 from "../../../Images/Badge0.jpg";
 import Badge1 from "../../../Images/Badge1.jpg";
 
@@ -10,18 +11,16 @@ import Badge1 from "../../../Images/Badge1.jpg";
 
 //container for teacher profile, no functionality currently - placeholder div
 export default function ChallengeView({setChallenge}) {
+  ChallengeView.propTypes = {
+    setChallenge: PropTypes.func.isRequired,
+  }
   const navigate = useNavigate();
-  const [getDrafts, setDrafts] = useState([]);
-  const [getAssigned, setAssigned] = useState([]);
-  var assigned = getAssigned;
-  var drafts = getDrafts;
+  const [drafts, setDrafts] = useState([]);
+  const [assigned, setAssigned] = useState([]);
 
   function match(length){ 
     //if there are classrooms assigned => assigned else drafts
-    if(length === 0){
-      return true;
-    }
-    return false;
+    return (length === 0);
   }
 
   useEffect(() => { //get challenge data from database
@@ -32,8 +31,8 @@ export default function ChallengeView({setChallenge}) {
           challengeIds.push(challenge.id);
         });
         getChallenges(challengeIds).then((challenges) => {
-          var draftData = challenges.filter(challenge => match(challenge.classrooms.length));
-          var assignedData = challenges.filter(challenge => !match(challenge.classrooms.length));
+          const draftData = challenges.filter(challenge => match(challenge.classrooms.length));
+          const assignedData = challenges.filter(challenge => !match(challenge.classrooms.length));
           setDrafts(draftData);
           setAssigned(assignedData);
           console.log(challenges);
@@ -79,10 +78,10 @@ export default function ChallengeView({setChallenge}) {
     navigate('/challenge-creation');
   }
 
-  function handleEntries(drafts){
+  function handleEntries(entriesAreDrafts){
     //if no data yet -> display inbox icon
-    if(drafts){
-      if(getDrafts.length == 0){
+    if(entriesAreDrafts){
+      if(drafts.length == 0){
         //return no data icon if no data
         return (
           <div id='empty'>
@@ -92,11 +91,11 @@ export default function ChallengeView({setChallenge}) {
         );
       }
       else{
-        drafts = getDrafts.map(element=>{
+        const draftTable = drafts.map(element=>{
           //displays each draft in table
           return (
             <tr key={element.id} >
-              <td style={{textAlign:'left'}} ><img id='badge' src={handleBadges(element.badge_id)} /></td>
+              <td style={{textAlign:'left'}} ><img id='badge' alt={element.badge_id} src={handleBadges(element.badge_id)} /></td>
               <td>{element.name}</td>
               <td style={{textAlign:'right'}} onClick={(e) => {handleChangeEdit(element)}} id='icon'><i className='fa fa-pen' /></td>
             </tr>
@@ -106,7 +105,7 @@ export default function ChallengeView({setChallenge}) {
           <div id='challenge-wrapper'>
             <table className="challenge-table">
               <tbody>
-                {drafts}
+                {draftTable}
               </tbody>
             </table>
           </div>
@@ -114,7 +113,7 @@ export default function ChallengeView({setChallenge}) {
       }
     }
     else {
-      if(getAssigned.length == 0){
+      if(assigned.length == 0){
         //return no data icon if no data
         return (
           <div id='empty'>
@@ -124,12 +123,12 @@ export default function ChallengeView({setChallenge}) {
         );
       }
       else{
-        console.log(getAssigned);
-        assigned = getAssigned.map(element=>{
+        console.log(assigned);
+        const assignedTable = assigned.map(element=>{
           //displays each assigned in table
           return (
             <tr key={element.id} >
-              <td style={{textAlign:'left'}} ><img src={handleBadges(element.badge_id)} id='badge'/></td>
+              <td style={{textAlign:'left'}} ><img src={handleBadges(element.badge_id)} alt={element.badge_id} id='badge'/></td>
               <td>{element.name}</td>
               <td style={{textAlign:'right'}} onClick={(e) => {handleChangeView(element)}} id='icon'><i className='fa fa-eye' /></td>
             </tr>
@@ -139,7 +138,7 @@ export default function ChallengeView({setChallenge}) {
           <div id='challenge-wrapper'>
             <table className="challenge-table">
               <tbody>
-                {assigned}
+                {assignedTable}
               </tbody>
             </table>
           </div>
