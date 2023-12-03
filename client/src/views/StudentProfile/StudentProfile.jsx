@@ -4,16 +4,20 @@
 import { message, Row, Col } from 'antd';
 import React, {useEffect, useState} from 'react';
 import NavBar from '../../components/NavBar/NavBar';
-import { getStudentClassroom, getCurrentStudent, getStudentCompletedChallenges } from '../../Utils/requests';
+import { getStudentClassroom, getCurrentStudent, getStudentCompletedChallenges, getStudent } from '../../Utils/requests';
 import './StudentProfile.less';
 import {Link} from 'react-router-dom';
 import StudentChallengeView from "./StudentChallengeView";
 import BadgeDisplayList from './BadgeDisplayList/BadgeDisplayList'
+import Profile from './StudentProfilePic';
+import default_profile from '../../assets/default.png';
 
 function StudentProfile(){
     const [studentName, setStudentName] = useState(localStorage.getItem("studentName"));
     const [completedChallengeList, setCompletedChallengeList] = useState(null);
     const [classroom, setClassroom] = useState(null);
+    const [profilepicture, loadProfile] = useState(default_profile);
+
 
     useEffect(() => {
         const fetchCompletedChallengeList = async (studentId) => {
@@ -31,6 +35,7 @@ function StudentProfile(){
                 // Note: There could be multiple students logged in, so for now the code just gets one of them.
                 // In future, it could be helpful to have a menu to select which student's profile the logged-in students want to view.
                 setStudentName(currentStudentRes.data.students[0].name);
+                loadProfile(currentStudent.data.students[0].profile_picture);
                 const studentId = currentStudentRes.data.students[0].id;
                 fetchCompletedChallengeList(studentId);
             } else {
@@ -65,7 +70,10 @@ function StudentProfile(){
             <div id='sp-header'>
                 <Row>
                     <Col span={12}>
-                        <img id="profilepic" src = "/images/PFP.png" alt="pfp"/>
+                        <div class = "profilepicture">
+                            <img className="profile_picture_styling" src={profilepicture}  alt="Profile"/>
+                            <Profile />
+                        </div>
                     </Col>
                     <Col span={12}>
                         <div id="badgeDisplayWidget">
@@ -94,7 +102,6 @@ function StudentProfile(){
                     </Col>
                 </Row>
             </div>
-
         </div>
         </body>
         </html>

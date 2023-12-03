@@ -12,12 +12,12 @@
     "BugReport": "/bugreport",
     "TeacherProfile": "/teacherprofile",
     "ChallengeView": "/challengeview",
-    "StudentProfile": "/StudentProfile"
+    "StudentProfile": "/studentprofile"
   },
   "users": {
     "DefaultUser": ["Home", "TeacherLogin", "Sandbox", "About"],
     "Mentor": ["Dashboard", "AccountInfo", "SignOut", "Sandbox", "BugReport","TeacherProfile", "ChallengeView"],
-    "Student": ["SignOut", "StudentProfile"],
+    "Student": ["StudentProfile", "SignOut"],
     "ContentCreator": [
       "ContentCreatorDashboard",
       "AccountInfo",

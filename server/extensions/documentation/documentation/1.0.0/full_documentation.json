@@ -12724,6 +12724,10 @@
               "last_name": {
                 "type": "string"
               },
+              "profile_picture": {
+                "type": "string"
+              },
+
               "school": {
                 "type": "string"
               },
@@ -13089,6 +13093,9 @@
                 "last_name": {
                   "type": "string"
                 },
+                "profile_picture": {
+                  "type": "string"
+                },
                 "school": {
                   "type": "string"
                 },
@@ -13153,6 +13160,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "profile_picture": {
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
@@ -13870,6 +13880,10 @@
           "last_name": {
             "type": "string"
           },
+          "profile_picture": {
+            "type": "string",
+            "default": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fprofile-avatar-icon-design-template-vector-28515791&psig=AOvVaw3cN0kNcXKADL8RBfnqLcPw&ust=1699318100466000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDY6bKTroIDFQAAAAAdAAAAABAE"
+          },
           "school": {
             "required": [
               "id"
@@ -14079,6 +14093,10 @@
           "last_name": {
             "type": "string"
           },
+          "profile_picture": {
+            "type": "string",
+            "default": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fprofile-avatar-icon-design-template-vector-28515791&psig=AOvVaw3cN0kNcXKADL8RBfnqLcPw&ust=1699318100466000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDY6bKTroIDFQAAAAAdAAAAABAE"
+          },
           "school": {
             "type": "string"
           },
@@ -14203,6 +14221,9 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "profile_picture": {
+                "type": "string"
               },
               "created_by": {
                 "type": "string"
@@ -14393,6 +14414,9 @@
                   "type": "string"
                 },
                 "last_name": {
+                  "type": "string"
+                },
+                "profile_picture": {
                   "type": "string"
                 },
                 "school": {
@@ -14710,6 +14734,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "profile_picture": {
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
@@ -15155,6 +15182,9 @@
                 }
               }
             }
+          },
+          "profile_picture": {
+            "type": "string"
           }
         }
       },
@@ -15191,6 +15221,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "profile_picture": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

@@ -10,6 +10,8 @@ import AwardBadges from './views/Mentor/AwardBadges/AwardBadges';
 import ChallengeCreation from './views/Mentor/Challenges/ChallengeCreation';
 import Classroom from './views/Mentor/Classroom/Classroom';
 import Dashboard from './views/Mentor/Dashboard/Dashboard';
+import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
+import ChallengeView from './views/Mentor/ChallengeView/ChallengeView';
 import NotFound from './views/NotFound';
 import Replay from './views/Replay/Replay';
 import ActivityLevelReport from './views/Researcher/ActivityLevelReport';
@@ -34,6 +36,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/teacherlogin' element={<TeacherLogin />} />
+        <Route path='/challengeview' element={<ChallengeView />} />
         <Route path='/forgot-password' element={<ForgetPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/login' element={<StudentLogin />} />
@@ -120,30 +123,28 @@ const App = () => {
           }
         />
 
-          <Route
-              path='/StudentProfile'
-              element={
-                  <PrivateRoute>
-                      <StudentProfile />
-                  </PrivateRoute>
-              }
-          />
-
-        <Route path='/bugreport' element={<BugReport />} />
+        <Route
+            path='/studentprofile'
+            element={
+                <PrivateRoute>
+                    <StudentProfile />
+                </PrivateRoute>
+            }
+        />
+        <Route
+          path='/teacherprofile'
+          element={
+            <PrivateRoute>
+              <TeacherProfile />
+            </PrivateRoute>
+          }
+        />
 
         <Route
           path='/challenge-creation'
           element={
             <PrivateRoute>
               <ChallengeCreation savedChallenge={savedChallenge}/>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path='/StudentProfile'
-          element={
-            <PrivateRoute>
-              <StudentProfile />
             </PrivateRoute>
           }
         />
@@ -163,14 +164,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
-        <Route
-          path='/teacherprofile'
-          element={
-            <PrivateRoute>
-              <TeacherProfile />
-            </PrivateRoute>
-          }
-        />
+
         <Route path='/bugreport' element={<BugReport />} />
 
         <Route path='*' element={<NotFound/>} />
