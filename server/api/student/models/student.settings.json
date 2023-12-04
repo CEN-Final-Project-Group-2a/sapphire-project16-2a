@@ -38,6 +38,9 @@
     "challenges": {
       "via": "students",
       "collection": "challenge"
+    },
+    "profile_picture": {
+      "type": "text"
     }
   }
 }

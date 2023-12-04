@@ -1,6 +1,3 @@
-
-
-
 import { message, Row, Col } from 'antd';
 import React, {useEffect, useState} from 'react';
 import NavBar from '../../components/NavBar/NavBar';
@@ -9,11 +6,15 @@ import './StudentProfile.less';
 import {Link} from 'react-router-dom';
 import StudentChallengeView from "./StudentChallengeView";
 import BadgeDisplayList from './BadgeDisplayList/BadgeDisplayList'
+import ProfilePicture from './StudentProfilePic';
+import default_profile from '../../assets/default.png';
 
 function StudentProfile(){
     const [studentName, setStudentName] = useState(localStorage.getItem("studentName"));
     const [completedChallengeList, setCompletedChallengeList] = useState(null);
     const [classroom, setClassroom] = useState(null);
+    const [profilepicture, loadProfile] = useState(default_profile);
+
 
     useEffect(() => {
         const fetchCompletedChallengeList = async (studentId) => {
@@ -32,6 +33,9 @@ function StudentProfile(){
                 // In future, it could be helpful to have a menu to select which student's profile the logged-in students want to view.
                 setStudentName(currentStudentRes.data.students[0].name);
                 const studentId = currentStudentRes.data.students[0].id;
+                if(currentStudentRes.data.students[0].profile_picture != null){
+                  loadProfile(currentStudentRes.data.students[0].profile_picture);
+                }
                 fetchCompletedChallengeList(studentId);
             } else {
                 message.error(currentStudentRes.err);
@@ -65,7 +69,10 @@ function StudentProfile(){
             <div id='sp-header'>
                 <Row>
                     <Col span={12}>
-                        <img id="profilepic" src = "/images/PFP.png" alt="pfp"/>
+                        <div className = "profilepicture">
+                            <img className="profile_picture_styling" src={profilepicture}  alt="Profile"/>
+                            <ProfilePicture />
+                        </div>
                     </Col>
                     <Col span={12}>
                         <div id="badgeDisplayWidget">
@@ -94,7 +101,6 @@ function StudentProfile(){
                     </Col>
                 </Row>
             </div>
-
         </div>
         </body>
         </html>

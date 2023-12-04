@@ -10,7 +10,7 @@ export const getCurrUser = () => {
   }
   if (!result.role) {
     return {
-      role: 'Student',
+      role: 'Student'
     };
   } else if (result.role.type === 'content_creator') {
     return {
@@ -25,7 +25,7 @@ export const getCurrUser = () => {
   } else if (result.role.type === 'authenticated') {
     return {
       role: 'Mentor',
-      name: result.role.name,
+      name: result.role.name
     };
   }
 };
