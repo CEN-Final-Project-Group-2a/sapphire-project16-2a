@@ -18,6 +18,7 @@ function BadgeSelection ({onBadgeSelect})
     const sliderStyles = {
         height: "300px",
         position: "relative",
+        paddingLeft: "400px",
     }
 
     //Style to display each badge
@@ -43,7 +44,7 @@ function BadgeSelection ({onBadgeSelect})
         color: "black",
         zIndex: 1000,
         cursor: "pointer",
-
+        paddingLeft: "600px",
     }
 
     //Right arrow style to navigate from each badge
@@ -56,7 +57,7 @@ function BadgeSelection ({onBadgeSelect})
         color: 'black',
         zIndex: 1000,
         cursor: "pointer",
-
+        paddingRight: "165px",
     }
 
     //Function to navigate to previous badge
@@ -101,7 +102,7 @@ function BadgeSelection ({onBadgeSelect})
             </div>
             <div style={rightArrowStyles} onClick={goToNext} onKeyDown={keyboardListener}>&#9654;</div>
             <div>
-                <button onClick={selectBadge}>Select the badge</button>
+                <button onClick={selectBadge} style={{marginRight: "400px"}}>Select the badge</button>
             </div>
         </div>
     )
