@@ -3,9 +3,8 @@ import NavBar from "../../../components/NavBar/NavBar";
 import StudentList from "./StudentList";
 import './TeacherProfile.less';
 import default_profile from '../../../assets/default.png';
-import { getMentor} from '../../../Utils/requests';
+import { getMentor } from '../../../Utils/requests';
 import ProfilePicture from './TeacherProfilePic';
-
 
 export default function TeacherProfile() {
   const [profilepicture, loadProfile] = useState(default_profile);

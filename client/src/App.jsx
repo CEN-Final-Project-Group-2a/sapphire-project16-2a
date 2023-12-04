@@ -26,7 +26,7 @@ import StudentProfile from './views/StudentProfile/StudentProfile'
 import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
 
 const App = () => {
-  const [savedChallenge, setChallenge] = useState(null);
+  const [savedChallenge, setSavedChallenge] = useState(null);
   
   return (
     <div>
@@ -157,7 +157,7 @@ const App = () => {
           path='/challengeview'
           element={
             <PrivateRoute>
-              <ChallengeView setChallenge={setChallenge}/>
+              <ChallengeView setChallenge={setSavedChallenge}/>
             </PrivateRoute>
           }
         />
