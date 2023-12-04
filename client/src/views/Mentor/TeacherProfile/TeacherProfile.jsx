@@ -14,7 +14,9 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const teacher_profile = await getMentor();
-      loadProfile(teacher_profile.data.profile_picture);
+      if(teacher_profile.data.profile_picture != null){
+        loadProfile(teacher_profile.data.profile_picture);
+      }
      } catch {}
   };
   fetchData();
