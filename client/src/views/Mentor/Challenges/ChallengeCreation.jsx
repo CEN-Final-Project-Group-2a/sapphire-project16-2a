@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { message, Form, Input } from "antd"
 import './ChallengeCreation.less';
 import NavBar from '../../../components/NavBar/NavBar';
-import { useNavigate } from 'react-router-dom';
 import {
   getActivityToolbox,
   getActivityToolboxAll,
@@ -18,6 +19,9 @@ import BadgeSelection from './BadgeSelection/BadgeSelection.jsx'
 
 //adding a props to update a previously saved challenge
 export default function ChallengeCreation({savedChallenge}) {
+  ChallengeCreation.propTypes = {
+    savedChallenge: PropTypes.object.isRequired,
+  }
   const defaultChallengeData = (savedChallenge == null) ? {
     name: '',
     badge_id: 'Badge0',
@@ -27,14 +31,13 @@ export default function ChallengeCreation({savedChallenge}) {
   console.log(savedChallenge); // if undefined -> check app.js or challengeview
   const savedId = (savedChallenge == null) ? null : savedChallenge.id;
   const savedMentor = (savedChallenge == null) ? null : savedChallenge.mentor.id;
-  // By default, the challenge should have the badge of id 0
-  const savedBadge = (savedChallenge == null) ? 0 : savedChallenge.badge_id;
 
   const [challengeData, setChallengeData] = useState(defaultChallengeData);
   const [challengeId, setChallengeId] = useState(savedId);
   const [mentorId, setMentorId] = useState(savedMentor);
   const navigate = useNavigate();
-  const [selectedBadge, setSelectedBadge] = useState(savedBadge);
+  // This variable monitors the state of the badge selection carousel
+  const [selectedBadge, setSelectedBadge] = useState(null);
   const [challengeSaved, setChallengeSaved] = useState(false);
 
   // Ensures that non-mentors are navigated away from this page
@@ -49,13 +52,16 @@ export default function ChallengeCreation({savedChallenge}) {
     })
   }, []);
 
-  // Detect when the user has chosen a new badge with the selection widget
+  // Detect when the user has chosen a new badge from the carousel
   useEffect(() => {
-    setChallengeData({...challengeData, badge_id: "Badge" + selectedBadge})
+    if (selectedBadge != null) {
+      // When selectedBadge is null, the user has not yet selected a badge from the carousel
+      setChallengeData({...challengeData, badge_id: "Badge" + selectedBadge});
+    }
   }, [selectedBadge]);
 
   // Returns the activity object associated with an challenge if one is found to already exist.
-  // Creates a new activity and associates it with a challenge if necessary.
+  // Calls a function to create a new activity and associates it with the current challenge if necessary.
   // Returns null if there is a failure to retrieve a linked activity.
   // Note that it must have 'currentChallengeId' passed to it because it is called before 'challengeId' fully updates in the components state
   const getChallengeActivity = async (currentChallengeId) => {
@@ -65,27 +71,30 @@ export default function ChallengeCreation({savedChallenge}) {
     } else {
       let activity = challengeDetailsResponse.data.activity;
       if (activity == null) {
-        // 0 is always passed in for the activity number because there should only be one activity associated with any challenge
-        // 'null' is passed in for the learning standard because it is assumed a challenge will not correspond to any particular standard
-        const createActivityResponse = await createActivity(0, null);
-        if (createActivityResponse.err) {
-          message.error(createActivityResponse.err);
-        } else {
-          const createdActivityId = createActivityResponse.data.id;
-          const updateChallengeActivityResponse = await updateChallengeActivity(currentChallengeId, createdActivityId);
-          if (updateChallengeActivityResponse.err) {
-            message.error(updateChallengeActivityResponse.err);
-          } else {
-            const updatedChallengeDetailsResponse = await getChallengeDetails(currentChallengeId);
-            if (updatedChallengeDetailsResponse.err) {
-              message.error(updatedChallengeDetailsResponse.err);
-            } else {
-              activity = updatedChallengeDetailsResponse.data.activity;
-            }
-          }
-        }
+        return await createAndReturnChallengeActivity(currentChallengeId);
+      } else {
+        return activity;
       }
-      return activity;
+    }
+    return null;
+  }
+
+  // Creates a new activity, associates it with the given challenge, and returns the activity.
+  // Returns null if there is a failure to create and retrieve a linked activity.
+  const createAndReturnChallengeActivity = async (currentChallengeId) => {
+    // 0 is always passed in for the activity number because there should only be one activity associated with any challenge
+    // 'null' is passed in for the learning standard because it is assumed a challenge will not correspond to any particular standard
+    const createActivityResponse = await createActivity(0, null);
+    if (createActivityResponse.err) {
+      message.error(createActivityResponse.err);
+    } else {
+      const createdActivityId = createActivityResponse.data.id;
+      const updateChallengeActivityResponse = await updateChallengeActivity(currentChallengeId, createdActivityId);
+      if (updateChallengeActivityResponse.err) {
+        message.error(updateChallengeActivityResponse.err);
+      } else {
+        return await getChallengeActivity(currentChallengeId);
+      }
     }
     return null;
   }

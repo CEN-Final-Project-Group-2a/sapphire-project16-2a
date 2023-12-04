@@ -81,22 +81,25 @@ export default function NavBar() {
           &nbsp; User Login
         </Menu.Item>
       ) : null}
-      {shouldShowRoute('About') ? (
-        <Menu.Item key='6' onClick={() => handleRouteChange(routes.About)}>
-          <i className='fa fa-info-circle' />
-          &nbsp; About
-        </Menu.Item>
-      ) : null}
       {shouldShowRoute('ChallengeView') ? (
-        <Menu.Item key='7' onClick={() => handleRouteChange(routes.ChallengeView)}>
-          <i className='fa fa-star' />{" "}
+        <Menu.Item key='6' onClick={() => handleRouteChange(routes.ChallengeView)}
+        >
+          <i className='fa fa-star' />
           &nbsp; Challenges
         </Menu.Item>
       ) : null}
       {shouldShowRoute('TeacherProfile') ? (
-        <Menu.Item key='8' onClick={() => handleRouteChange(routes.TeacherProfile)}>
-          <i className='fa fa-user-alt' />{" "}
+        <Menu.Item key='7' onClick={() => handleRouteChange(routes.TeacherProfile)}
+        >
+          <i className='fa fa-user-alt' />
           &nbsp; Profile
+        </Menu.Item>
+      ) : null}
+      {shouldShowRoute('About') ? (
+        <Menu.Item key='8' onClick={() => handleRouteChange(routes.About)}
+        >
+          <i className='fa fa-info-circle' />
+          &nbsp; About
         </Menu.Item>
       ) : null}
       {shouldShowRoute('BugReport') ? (

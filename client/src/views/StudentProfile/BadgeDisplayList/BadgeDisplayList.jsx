@@ -1,21 +1,27 @@
+import PropTypes from 'prop-types';
 import BadgeDisplayItem from "./BadgeDisplayItem/BadgeDisplayItem"
 import "./BadgeDisplayList.less"
 
 function BadgeDisplayList({completedChallengeList}) {
+    BadgeDisplayList.propTypes = {
+        completedChallengeList: PropTypes.array.isRequired,
+    }
     const getBadgeDisplayItems = () => {
+        if (completedChallengeList.length == 0) {
+            return (
+                <div id='text'>
+                <p>
+                    Looks like you have no badges yet. Try completing a challenge to get one!
+                </p>
+            </div>)
+        }
         return (completedChallengeList.map((challenge) =>
             <BadgeDisplayItem
                 name={challenge.name}
-                badge_id={challenge.badge_id}>
+                badge_id={challenge.badge_id}
+                key={challenge.id}>
             </BadgeDisplayItem>))
     }
-    const noBadgesMessage = (
-        <div id='text'>
-            <p>
-                Looks like you have no badges yet. Try completing a challenge to get one!
-            </p>
-        </div>
-    );
     
     return (
         <div id="horizontal-badge-container" className="rounded">
@@ -24,9 +30,7 @@ function BadgeDisplayList({completedChallengeList}) {
             <div className="flex">
                 {completedChallengeList == null ?
                     (<div></div>) :
-                    (completedChallengeList.length == 0 ?
-                        noBadgesMessage :
-                        getBadgeDisplayItems())}
+                    (getBadgeDisplayItems())}
             </div>
         </div>
     )

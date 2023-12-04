@@ -528,6 +528,10 @@
           "last_name": {
             "type": "string"
           },
+          "profile_picture": {
+            "type": "string",
+            "default": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fprofile-avatar-icon-design-template-vector-28515791&psig=AOvVaw3cN0kNcXKADL8RBfnqLcPw&ust=1699318100466000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDY6bKTroIDFQAAAAAdAAAAABAE"
+          },
           "school": {
             "required": [
               "id"
@@ -678,6 +682,7 @@
               }
             }
           },
+
           "challenges": {
             "type": "array",
             "items": {
@@ -737,6 +742,10 @@
           "last_name": {
             "type": "string"
           },
+          "profile_picture": {
+            "type": "string",
+            "default": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fprofile-avatar-icon-design-template-vector-28515791&psig=AOvVaw3cN0kNcXKADL8RBfnqLcPw&ust=1699318100466000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDY6bKTroIDFQAAAAAdAAAAABAE"
+          },
           "school": {
             "type": "string"
           },
@@ -749,6 +758,7 @@
           "user": {
             "type": "string"
           },
+
           "challenges": {
             "type": "array",
             "items": {
