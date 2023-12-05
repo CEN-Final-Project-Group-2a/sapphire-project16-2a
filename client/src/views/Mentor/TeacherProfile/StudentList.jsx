@@ -37,7 +37,6 @@ export default function StudentList(props) {
         });
         getChallenges(challengeIds).then((challenges) => {
           setChallenges(challenges.filter(challenge => challenge.classrooms.length != 0));
-          console.log(challenges);
         });
       } else {
         message.error(res.err);
@@ -92,7 +91,6 @@ export default function StudentList(props) {
         })
       }
     })
-    console.log(badges.length);
     
     
     if(badges.length != 0){
@@ -119,7 +117,6 @@ export default function StudentList(props) {
       return (
         <tr key={student.id} >
           <td style={{textAlign:'left'}} id='profile'>
-            
             <div>{student.name}</div>
           </td> 
           <td></td>
