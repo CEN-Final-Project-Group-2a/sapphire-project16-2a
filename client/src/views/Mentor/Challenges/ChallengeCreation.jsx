@@ -18,7 +18,7 @@ import BadgeSelection from './BadgeSelection/BadgeSelection.jsx'
 
 
 //adding a props to update a previously saved challenge
-export default function ChallengeCreation({savedChallenge}) {
+export default function ChallengeCreation({savedChallenge, setSavedChallenge}) {
   ChallengeCreation.propTypes = {
     savedChallenge: PropTypes.object.isRequired,
   }
@@ -141,6 +141,7 @@ export default function ChallengeCreation({savedChallenge}) {
 
   const navigateToChallengeView = async () => {
     if(challengeSaved){
+      setSavedChallenge(null); //to reset saved challenge
       navigate("/challengeview");
     }
     else{

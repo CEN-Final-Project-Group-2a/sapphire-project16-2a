@@ -141,7 +141,7 @@ const App = () => {
           path='/challenge-creation'
           element={
             <PrivateRoute>
-              <ChallengeCreation savedChallenge={savedChallenge}/>
+              <ChallengeCreation savedChallenge={savedChallenge} setSavedChallenge = {setSavedChallenge}/>
             </PrivateRoute>
           }
         />
