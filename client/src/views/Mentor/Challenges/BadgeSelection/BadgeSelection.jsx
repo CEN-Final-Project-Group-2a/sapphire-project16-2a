@@ -47,6 +47,7 @@ function BadgeSelection ({onBadgeSelect})
         color: "black",
         cursor: "pointer",
         paddingLeft: "35%",
+
     }
 
     //Right arrow style to navigate from each badge
