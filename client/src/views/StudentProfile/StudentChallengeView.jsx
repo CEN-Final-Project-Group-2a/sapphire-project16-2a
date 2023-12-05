@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { message } from 'antd';
 import {getStudentClassroom, getStudentCompletedChallenges} from '../../Utils/requests';
 
+//Tutorial for to-do list, kinda helpful - https://strapi.io/blog/how-to-build-a-to-do-list-application-with-strapi-and-react-js
+//Fetching data from component? - https://stackoverflow.com/questions/67241144/fetch-data-from-strapi-cms-to-nextreact-js-frontend-doesnt-work
+
 //Component gets the classroom prop from the profile already made
 const StudentChallengeView = () => {
     //State to store list of all challenges based on classroom
