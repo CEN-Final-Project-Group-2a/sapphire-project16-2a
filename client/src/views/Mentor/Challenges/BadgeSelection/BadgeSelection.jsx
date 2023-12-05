@@ -42,11 +42,11 @@ function BadgeSelection ({onBadgeSelect})
         position: "absolute",
         top: "50%",
         transform: "translate(-50%, -50%)",
-        left: "16px",
+        left: "20%",
         fontSize: '45px',
         color: "black",
         cursor: "pointer",
-        paddingLeft: "35%",
+        //paddingLeft: "10%",
 
     }
 
@@ -55,11 +55,11 @@ function BadgeSelection ({onBadgeSelect})
         position: "absolute",
         top: "50%",
         transform: "translate(-50%, -50%)",
-        right: "32px",
+        right: "20%",
         fontSize: '45px',
         color: 'black',
         cursor: "pointer",
-        paddingRight: "10%",
+        //paddingRight: "10%",
     }
 
     //Function to navigate to previous badge
@@ -104,7 +104,7 @@ function BadgeSelection ({onBadgeSelect})
             </div>
             <div style={rightArrowStyles} onClick={goToNext} onKeyDown={keyboardListener}>&#9654;</div>
             <div>
-                <button onClick={selectBadge} style={{marginRight: "400px"}}>Select the badge</button>
+                <button onClick={selectBadge} style={{position: "absolute", top: "100%", right: "25%", transform: "translate(-50%, -50%)"}}>Select the badge</button>
             </div>
         </div>
     )
