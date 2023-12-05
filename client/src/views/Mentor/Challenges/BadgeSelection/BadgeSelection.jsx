@@ -6,6 +6,7 @@ import Badge1 from "../../../../Images/Badge1.jpg";
 //Function component to select/view badges
 function BadgeSelection ({onBadgeSelect})
 {
+    //Defining propTypes
     BadgeSelection.propTypes = {
         onBadgeSelect: PropTypes.func.isRequired,
     }
@@ -23,16 +24,18 @@ function BadgeSelection ({onBadgeSelect})
 
     //Style to display each badge
     const badgeStyles = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
         width: "300px",
         height: "300px",
         borderRadius: "10px",
-        backgroundPosition: "center",
         backgroundSize: "cover",
         //Set badge image based on the current badge ID
         backgroundImage: `url(${badgeImages[currentBadgeID]})`,
-        zIndex: 10,
 
-    }
+    };
 
     //Left arrow style to navigate from each badge
     const leftArrowStyles = {
@@ -42,9 +45,9 @@ function BadgeSelection ({onBadgeSelect})
         left: "16px",
         fontSize: '45px',
         color: "black",
-        zIndex: 1000,
         cursor: "pointer",
-        paddingLeft: "600px",
+        paddingLeft: "35%",
+
     }
 
     //Right arrow style to navigate from each badge
@@ -55,9 +58,8 @@ function BadgeSelection ({onBadgeSelect})
         right: "32px",
         fontSize: '45px',
         color: 'black',
-        zIndex: 1000,
         cursor: "pointer",
-        paddingRight: "165px",
+        paddingRight: "10%",
     }
 
     //Function to navigate to previous badge
@@ -93,7 +95,7 @@ function BadgeSelection ({onBadgeSelect})
     }
 
     //Render the badge selection on page
-    //*Needed to change the way of displaying arrows, use unicode
+    //Needed to change the way of displaying arrows, used unicode
     return (
         <div style={sliderStyles}>
             <div style={leftArrowStyles} onClick={goToPrevious} onKeyDown={keyboardListener}>&#9664;</div>
