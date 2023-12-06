@@ -1,6 +1,4 @@
 
-
-
 import { message, Row, Col } from 'antd';
 import React, {useEffect, useState} from 'react';
 import NavBar from '../../components/NavBar/NavBar';
@@ -26,11 +24,11 @@ function StudentProfile(){
                     if (res.data) {
                         setCompletedChallengeList(res.data);
                     } else {
-                        message.error(res.err)
+                       // message.error(res.err)
                     }
                 })
             } else {
-                message.error(res.err);
+               // message.error(res.err);
             }
         })
 

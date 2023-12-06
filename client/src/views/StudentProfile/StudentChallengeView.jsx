@@ -51,15 +51,21 @@ const StudentChallengeView = () => {
                 //const uncompletedChallenges = challenges.filter(o1 => !completed.some(o2 => o1.id === o2.id));
                 console.log("Completed:", completed);
 
-                let uncompletedChallenges = res.data.classroom.challenges.filter(o1 => !completedChallengesResponse.data.some(o2 => o1.id === o2.id));
+                let uncompletedChallenges =  localStorage.getItem('assignedChallenges');//res.data.classroom.challenges.filter(o1 => !completedChallengesResponse.data.some(o2 => o1.id === o2.id));
 
-                console.log("Non-completed:", uncompletedChallenges);
+               // console.log("Non-completed:", uncompletedChallenges);
 
+
+               if(uncompletedChallenges){
+
+                const parseData = JSON.parse(uncompletedChallenges);
+                setChallenges(parseData);
+               }
                 // Set the uncompleted challenges state
-                setChallenges(uncompletedChallenges);
+                
 
             } catch (error) {
-                console.error(error);
+              //  console.error(error);
                 message.error('Error fetching data.');
             }
         };
