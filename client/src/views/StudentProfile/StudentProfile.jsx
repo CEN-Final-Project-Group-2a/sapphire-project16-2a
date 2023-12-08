@@ -24,11 +24,11 @@ function StudentProfile(){
                     if (res.data) {
                         setCompletedChallengeList(res.data);
                     } else {
-                       // message.error(res.err)
+                        message.error(res.err)
                     }
                 })
             } else {
-               // message.error(res.err);
+                message.error(res.err);
             }
         })
 

@@ -27,7 +27,7 @@ const StudentChallengeView = () => {
                 setClassroom(res.data.classroom);
 
                 if (res.data.classroom.challenges) {
-                    setChallenges([...res.data.classroom.challenges]);
+                 setChallenges([...res.data.classroom.challenges]);
                 }
                 else
                 {
@@ -51,21 +51,34 @@ const StudentChallengeView = () => {
                 //const uncompletedChallenges = challenges.filter(o1 => !completed.some(o2 => o1.id === o2.id));
                 console.log("Completed:", completed);
 
-                let uncompletedChallenges =  localStorage.getItem('assignedChallenges');//res.data.classroom.challenges.filter(o1 => !completedChallengesResponse.data.some(o2 => o1.id === o2.id));
+                
+              //  let uc = res.data.classroom.challenges.filter(o1 => !completedChallengesResponse.data.some(o2 => o1.id === o2.id));
+                let uncompletedChallenges =  JSON.parse(localStorage.getItem('assignedChallenges'));
 
-               // console.log("Non-completed:", uncompletedChallenges);
 
+                let idMatches = [];
+
+                if(completedChallenges){
+
+                    idMatches = completedChallenges.map(item => item.id);
+
+                }
+
+                if(completedChallenges != null  || idMatches.length !== 0){
+                uncompletedChallenges = uncompletedChallenges.filter(item => !idMatches.includes(item.id));
+                }
 
                if(uncompletedChallenges){
 
-                const parseData = JSON.parse(uncompletedChallenges);
+                const parseData = (uncompletedChallenges);
                 setChallenges(parseData);
                }
                 // Set the uncompleted challenges state
-                
+                console.log("Challenges: ");
+                console.log(challenges);
 
             } catch (error) {
-              //  console.error(error);
+                console.error(error);
                 message.error('Error fetching data.');
             }
         };

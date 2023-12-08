@@ -103,8 +103,6 @@ export default function ChallengeView({setChallenge}) {
   }
 
 
-
-
   function handleChangeEdit(challenge) { 
     //handle change for drafts
     //should direct user to create challenge page with previously filled out fields - editable
