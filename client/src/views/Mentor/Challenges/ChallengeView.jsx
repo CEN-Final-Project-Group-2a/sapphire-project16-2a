@@ -9,7 +9,8 @@ import Badge1 from "../../../Images/Badge1.jpg";
 
 
 
-//container for teacher profile, no functionality currently - placeholder div
+//shows drafts and assigned challenges for challenge creation 
+//serves a launching point for creating, editing, and assigning challenges or badges.
 export default function ChallengeView({setChallenge}) {
   ChallengeView.propTypes = {
     setChallenge: PropTypes.func.isRequired,
@@ -52,7 +53,8 @@ export default function ChallengeView({setChallenge}) {
       return Badge1;
     }
     else{
-      console.log("unexpected badge id");
+      //no badge selected -> placeholder badge
+      return(<i style={{color: 'lightgray'}} alt='placeholder badge' className='fa fa-medal fa-2x' />);
     }
   }
 

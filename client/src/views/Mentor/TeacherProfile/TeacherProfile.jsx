@@ -6,11 +6,12 @@ import default_profile from '../../../assets/default.png';
 import { getMentor } from '../../../Utils/requests';
 import ProfilePicture from './TeacherProfilePic';
 
+//profile for teacher: displays their students' achievements and a profile picture
 export default function TeacherProfile() {
   const [profilepicture, loadProfile] = useState(default_profile);
   const [name, setName] = useState("");
 
-useEffect(() => {
+useEffect(() => { //get mentor name and picture
   const fetchData = async () => {
     try {
       const teacher_profile = await getMentor();

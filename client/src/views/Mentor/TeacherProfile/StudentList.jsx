@@ -6,7 +6,7 @@ import Badge0 from "../../../Images/Badge0.jpg";
 import Badge1 from "../../../Images/Badge1.jpg";
 import { DownOutlined } from '@ant-design/icons';
 
-//container for teacher profile details, no functionality currently - placeholder div
+//list to display a teacher's students, can filter by classroom
 export default function StudentList(props) {
   const [students, setStudents] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
@@ -70,6 +70,7 @@ export default function StudentList(props) {
   }
 
   function getBadge(id){
+    //function provides badge image for handleBadges
     if(id == "Badge0"){
       return Badge0;
     }
@@ -77,10 +78,11 @@ export default function StudentList(props) {
       return Badge1;
     }
     else{
-      console.log("unexpected badge id");
+      console.log("Unexpected badge id");
     }
   }
   function handleBadges(student){
+    //returns badges associated with each student to display
     let badges = [];
     challenges.forEach((challenge) => {
       if(challenge.students.length != 0){
@@ -110,10 +112,9 @@ export default function StudentList(props) {
   
 
   function displayStudents() {
+    //filters students by classroom using dropdown feature
     return (students.filter((student) => filter == 0 || student.classroom == filter).map(student=>{
       //displays each student in table
-      //replace icon with profile picture later
-      //<i className='fa fa-user-circle fa-2x'/>
       return (
         <tr key={student.id} >
           <td style={{textAlign:'left'}} id='profile'>
@@ -132,7 +133,6 @@ export default function StudentList(props) {
         <div id='header-text' style={{marginLeft:'1vw'}}>My Students</div>
         <div id='dropdown-wrapper'><Dropdown overlay={menu()} trigger={['click']}>
           <button
-            //className='ant-dropdown-link'
             id='filter-students'
             onClick={(e) => e.preventDefault()}
           >

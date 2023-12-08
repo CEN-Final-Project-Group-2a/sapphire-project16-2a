@@ -21,6 +21,7 @@ import BadgeSelection from './BadgeSelection/BadgeSelection.jsx'
 export default function ChallengeCreation({savedChallenge, setSavedChallenge}) {
   ChallengeCreation.propTypes = {
     savedChallenge: PropTypes.object.isRequired,
+    setSavedChallenge:  PropTypes.object.isRequired
   }
   const defaultChallengeData = (savedChallenge == null) ? {
     name: '',

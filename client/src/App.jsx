@@ -26,6 +26,7 @@ import StudentProfile from './views/StudentProfile/StudentProfile'
 import TeacherProfile from './views/Mentor/TeacherProfile/TeacherProfile';
 
 const App = () => {
+  //use state variable tracks challenge details for edit and assign badges functionality
   const [savedChallenge, setSavedChallenge] = useState(null);
   
   return (
