@@ -9,6 +9,78 @@ Cloud-based programming interface
 
 <br/>
 
+## Updates by Sapphire 2a
+
+### Features Implemented
+
+#### Challenge View Page
+
+Write details here
+
+#### Challenge Creation Page
+
+On the challenge creation page, teachers can create or update an existing challenge assignment. They can associate a given badge icon and activity template with a challenge. There is also a button to continue assigning challenges to classrooms. Since this functionality is not completed, clicking this button will show an error message to the user that the functionality is not available yet.
+
+<img src="./documentation/integrated-challenge-creation-1.png" alt="Integrated Challenge Creation 1" height="250">
+
+<img src="./documentation/integrated-challenge-creation-2.png" alt="Integrated Challenge Creation 2"  height="250">
+
+#### Assign Challenges (In Progress)
+
+Write details here
+
+#### View Challenge Details and Award Badges to Students
+
+After having assigned a challenge to a classroom, the challenge will appear in the list of assigned challenges in the challenge view page. From here, a teacher can click on an individual challenge to navigate to a page where they can view the details of that challenge and award the badge associated with that challenge to selected students. The page also has a button to navigate to the activity template associated with the challenge, so the teacher may edit the activity template if needed.
+
+<img src="./documentation/award-to-selected.png" alt="Award Badges to Students" height="250">
+
+#### Student Profile
+
+Each student has a profile that they can navigate to. On this page, each student has a profile picture (default one given if none has been uploaded), list of challenges assigned to them, and a list of badges they have earned. Shown below is an example of the student's profile picture.
+
+<img src="./documentation/student-profile-picture.png" alt="Award Badges to Students" height="100">
+
+When a student completes a challenge, that challenge will disappear from the list of challenges assigned to them. Also, on the top right of the student profile, a widget displays the icons and titles of the challenges that the student has successfully completed. If the student currently has no badges, the widget instead displays a message that the student may complete challenges to receive badges.
+
+<img src="./documentation/student-profile.png" alt="Award Badges to Students" height="250">
+
+#### Teacher Profile
+
+On the teacher profile page, each teacher has a profile picture and a list of students in each of their classes. Shown below is an example of the teacher profile picture.
+
+<img src="./documentation/teacher-profile-picture.png" alt="Award Badges to Students" height="100">
+
+The list of students, located at the right of the page, also displays the badges that have been awarded to each student. Additionally, the teacher can filter this table by classrooms to view only students from one classroom at a time.
+
+<img src="./documentation/teacher-profile.png" alt="Award Badges to Students" height="250">
+
+<br/>
+
+### Running the Project
+
+The majority of our integrated code is found on the branch [integrated_team_code](https://github.com/CEN-Final-Project-Group-2a/sapphire-project16-2a/tree/integrated_team_code/server). All of our implemented features are here, with the exception of the code for teachers to assign challenges to classrooms, which is found in the branch [update_teacher_assign](https://github.com/CEN-Final-Project-Group-2a/sapphire-project16-2a/tree/update_teacher_assign). This branch has not yet been merged with everything else because the challenge assignment feature is not yet fully functional.
+
+To deploy our existing project code, pick which branch you want to use, and use the same deployment strategy as described in the rest of the pre-existing documentation for this project. All the database configuration changes we made should be updated in the appropriate files in the [server](/server#server) subdirectory and will be handled automatically by Strapi. The database data changes will be handled automatically by the Docker compose scripts and the updated database dump file [development_db.dump](/scripts/development_db.dump#development_db.dump). Additionally, since there is currently no way in the frontend to assign challenges to classrooms, this action can currently be simulated by visiting the Strapi administrator page and manually adding a classroom to a challenge in the database.
+
+As a note, our updated development database dump file [development_db.dump](/scripts/development_db.dump#development_db.dump) has new database example data in it that we have used to test our features. Most of these are example challenge entities. During testing of the integrated code branch, challenge entities were created with a given mentor’s account and then associated with subsets of the list of classrooms associated with that mentor. However, the current implementation to assign challenges only allows mentors to assign challenges to all their classrooms at once. To fix this mismatch of feature and database entries, the dump file for the [update_teacher_assign](https://github.com/CEN-Final-Project-Group-2a/sapphire-project16-2a/tree/update_teacher_assign) code branch represents a database state where all the challenges assigned to only a subset of classrooms have been removed. As a result, the database dump file for this branch and for the integrated team code branch do not currently match.
+
+<br/>
+
+### Outstanding Work
+
+As described above, the functionality for teachers to assign challenges to classrooms is not yet completed and is necessary to complete to allow for the full challenge workflow, where teachers will create challenges, assign them to classrooms, and award badges to students who have successfully completed those challenges. In particular, this feature looks mostly complete from a frontend perspective but needs to be set up to update the database when challenges are assigned to classrooms. Also, there is a way to de-assign challenges, but the teacher can only de-assign all of them at once rather than de-assigning a selection of them. It may be helpful to create a way for teachers to select which challenges they want to de-assign.
+
+Additionally, the student profiles currently only work properly when one student is logged in.  In future, we would want a way to select which student profile to navigate to given the list of logged-in students.
+
+Currently, the student sees the list of challenges assigned to them, but they still need a way of accessing the activity/Blockly page associated with the challenge.
+
+In order to implement updating the profile picture for a student, the student role was temporarily given database permission to update any other student given their id. This presents a risk of a student updating the information for another student, so a custom database request route with proper authentication might need to be implemented in the future.
+
+Finally, the challenge details/badge awarding page does not allow teachers to revoke badges from students. Given it could be a source of frustration for a teacher to accidentally permanently award a badge to a student, it could be helpful to present the teacher with a confirmation modal/pop-up before going through with the action.
+
+<br/>
+
 ## Application
 
 ### `client` 
