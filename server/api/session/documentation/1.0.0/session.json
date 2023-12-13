@@ -573,6 +573,12 @@
                   "type": "string"
                 }
               },
+              "challenges": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -611,6 +617,15 @@
                   "type": "boolean"
                 },
                 "last_logged_in": {
+                  "type": "string"
+                },
+                "challenges": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "profile_picture": {
                   "type": "string"
                 },
                 "created_by": {

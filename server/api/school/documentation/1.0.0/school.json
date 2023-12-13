@@ -584,6 +584,12 @@
                     "type": "string"
                   }
                 },
+                "challenges": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -609,6 +615,9 @@
                 "last_name": {
                   "type": "string"
                 },
+                "profile_picture": {
+                  "type": "string"
+                },
                 "school": {
                   "type": "string"
                 },
@@ -620,6 +629,12 @@
                 },
                 "user": {
                   "type": "string"
+                },
+                "challenges": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "created_by": {
                   "type": "string"

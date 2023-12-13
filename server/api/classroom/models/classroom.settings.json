@@ -46,6 +46,10 @@
       "via": "classroom",
       "private": true,
       "collection": "authorized-workspace"
+    },
+    "challenges": {
+      "via": "classrooms",
+      "collection": "challenge"
     }
   }
 }

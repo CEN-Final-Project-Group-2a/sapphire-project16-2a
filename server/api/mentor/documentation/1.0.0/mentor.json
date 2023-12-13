@@ -528,6 +528,10 @@
           "last_name": {
             "type": "string"
           },
+          "profile_picture": {
+            "type": "string",
+            "default": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fprofile-avatar-icon-design-template-vector-28515791&psig=AOvVaw3cN0kNcXKADL8RBfnqLcPw&ust=1699318100466000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDY6bKTroIDFQAAAAAdAAAAABAE"
+          },
           "school": {
             "required": [
               "id"
@@ -618,6 +622,12 @@
                     "type": "string"
                   }
                 },
+                "challenges": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -671,6 +681,56 @@
                 "type": "string"
               }
             }
+          },
+
+          "challenges": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "mentor": {
+                  "type": "string"
+                },
+                "classrooms": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "activity": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "badge_id": {
+                  "type": "string"
+                },
+                "students": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -681,6 +741,10 @@
           },
           "last_name": {
             "type": "string"
+          },
+          "profile_picture": {
+            "type": "string",
+            "default": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fprofile-avatar-icon-design-template-vector-28515791&psig=AOvVaw3cN0kNcXKADL8RBfnqLcPw&ust=1699318100466000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDY6bKTroIDFQAAAAAdAAAAABAE"
           },
           "school": {
             "type": "string"
@@ -693,6 +757,13 @@
           },
           "user": {
             "type": "string"
+          },
+
+          "challenges": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"

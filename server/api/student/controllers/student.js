@@ -16,6 +16,20 @@ module.exports = {
             students: students.map(student => sanitizeEntity(student, {model: strapi.models.student}))
         }
     },
+
+    // Retrieve the challenges a student has completed
+    async challenges(ctx) {
+        const { id } = ctx.params;
+        const student = await strapi.services.student.findOne({id: id});
+        // check if the student exists
+        let response;
+        if (student) {
+          response = student.challenges;
+        }
+
+        return response;
+      },
+
     /**
      * Update student enrolled attribute
      *

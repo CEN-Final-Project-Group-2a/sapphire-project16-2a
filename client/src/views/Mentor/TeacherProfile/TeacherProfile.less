@@ -1,0 +1,121 @@
+@import '../../../assets/style.less';
+
+//custom css file for teacher profile to be used when necessary
+#teacher-details{
+  display: inline-grid;
+  width: 50vw;
+  height: 38vw;
+}
+#pic-container{
+  display: inline-grid;
+  margin-right: 30vw;
+}
+#student-wrapper{
+  
+  display: inline-grid;
+  margin: 6vh 2vh 4vh auto;
+  width: 40vw;
+  height: 38vw;
+  background: #colors[senary];
+  border-radius: 5px;
+  border: 2px solid #colors[secondary];
+}
+#student-header{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
+  display:flex;
+  flex-direction: row;
+  font-size: 1.5vw;
+  font-weight: 700;
+  height: 3vw;
+  padding: 0.25vw;
+  color: #colors[text-secondary];
+  background: #colors[secondary];
+}
+#student-text{
+  flex: 1;
+  display: inline-grid;
+  width:20vw;
+  padding-left: 5vw;
+  align-self: right;
+}
+#dropdown-wrapper{
+  flex: 1;
+  display: inline-grid;
+  width: 20vw;
+  padding-left: 10vw;
+  align-self: left;
+}
+#filter-students{
+  background-color: #colors[secondary];
+  border: 0px;
+  border-radius: 5px;
+  font-size: 1.25vw !important;
+
+  &:hover{
+    cursor: pointer;
+    background-color: #colors[secondary];
+    color: #colors[primary];
+    
+  }
+}
+#profile{
+  color: black;
+}
+#menu{
+  border: 1px solid black;
+}
+
+#student-list{
+  display: inline-block;
+  height:34.75vw;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #colors[senary];
+	overflow: auto;
+	scroll-behavior: smooth;
+}
+tr {
+  background-color: white;
+  border: 1px solid black;
+}
+td {
+  cursor: default;
+  padding: 0.75vw;
+  font-size: medium;
+  width:13.33vw;
+}
+#teacher-name{
+  font-size: 20px;
+  font-weight: 700;
+  height: 3vw;
+  padding: 0.25vw;
+  color: #colors[text-secondary];
+}
+.profile_picture_styling{
+    border: 6px solid #colors[secondary];
+    border-radius: 50%;
+    max-height: 150px;
+    max-width: 150px;
+    margin-top: 1rem;
+    margin-left: 2vw !important;
+}
+.teacher_styling{
+    max-height: 150px;
+    max-width: 150px;
+    margin: 2rem;
+    margin-left: 3rem;
+}
+
+.update{
+    float: left;
+    background: #colors[secondary];
+    border-radius: 5px;
+    padding: 0.5vw;
+
+}
+#imageInput{
+  background: #colors[senary];
+}
+.teacher_buttons{
+  background-color: white;
+
+}
