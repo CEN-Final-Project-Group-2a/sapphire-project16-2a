@@ -18,7 +18,6 @@ function BadgeDisplayItem({name, badge_id}) {
     )
 }
 
-// FIXME(ccastillo): Do we want a default image for badge whose picture we can't find?
 const badgeIdToAddress = (badge_id) => {
     if (badge_id === "Badge0") {
         return Badge0;

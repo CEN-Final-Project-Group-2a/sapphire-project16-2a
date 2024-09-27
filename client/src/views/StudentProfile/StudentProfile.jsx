@@ -32,8 +32,10 @@ function StudentProfile(){
                 // Note: There could be multiple students logged in, so for now the code just gets one of them.
                 // In future, it could be helpful to have a menu to select which student's profile the logged-in students want to view.
                 setStudentName(currentStudentRes.data.students[0].name);
-                loadProfile(currentStudentRes.data.students[0].profile_picture);
                 const studentId = currentStudentRes.data.students[0].id;
+                if(currentStudentRes.data.students[0].profile_picture != null){
+                  loadProfile(currentStudentRes.data.students[0].profile_picture);
+                }
                 fetchCompletedChallengeList(studentId);
             } else {
                 message.error(currentStudentRes.err);
